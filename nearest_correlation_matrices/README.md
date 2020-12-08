@@ -9,6 +9,6 @@ This file looks at computing *nearest correlation matrices* using the NAG Librar
     * it has ones on the diagonal
     * its eignevalues are non-negative (positive semidefinite)
 
-- <img src="https://latex.codecogs.com/gif.latex? \Large Ax = \lambda x, \quad x \neq 0" />
+- <img src="https://latex.codecogs.com/gif.latex?\large\text{Ax = }\lambda\text{x,}\quad\text{x}\neq\text{0}" />
 
   $$ $$
