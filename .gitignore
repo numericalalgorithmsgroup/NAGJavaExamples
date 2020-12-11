@@ -1,3 +1,2 @@
 *.class
-pom.properties
-target/
+jblas-1.2.5.jar
