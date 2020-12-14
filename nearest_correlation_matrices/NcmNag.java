@@ -2,13 +2,14 @@ import java.lang.Math;
 import org.jblas.DoubleMatrix;
 import org.jblas.Eigen;
 import com.nag.routines.G02.G02AA;
-import org.tc33.jheatchart.HeatChart;
+//import org.tc33.jheatchart.HeatChart;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Color;
+import java.io.FileWriter;
+//import java.awt.Color;
 
 public class NcmNag {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         DoubleMatrix P = new DoubleMatrix(
                 new double[][] { { 59.875, 42.734, 47.938, 60.359, 54.016, 69.625, 61.500, 62.125 },
@@ -63,15 +64,34 @@ public class NcmNag {
 
         System.out.println();
 
-        HeatChart heatchart = new HeatChart(matrixAbs(X.sub(G)).toArray2());
+        // HeatChart heatchart = new HeatChart(matrixAbs(X.sub(G)).toArray2());
 
-        heatchart.setTitle("|G-X| for G02AA");
-        //heatchart.setXAxisLabel(String.format("Iterations: %d, ||G-X||F = %.4f", iter, X.sub(G).norm2()));
-        //heatchart.setYAxisLabel("Y axis");
-        //heatchart.setChartMargin(40);
-        heatchart.setHighValueColour(Color.BLUE);
+        // heatchart.setTitle("|G-X| for G02AA");
+        // //heatchart.setXAxisLabel(String.format("Iterations: %d, ||G-X||F = %.4f", iter, X.sub(G).norm2()));
+        // //heatchart.setYAxisLabel("Y axis");
+        // //heatchart.setChartMargin(40);
+        // heatchart.setHighValueColour(Color.BLUE);
 
-        heatchart.saveToFile(new File("|G-X| for G02AA.png"));
+        // heatchart.saveToFile(new File("|G-X| for G02AA.png"));
+
+        try {
+            FileWriter writer = new FileWriter(new File("g02aa.d"));
+            writer.write(iter + "\n");
+            writer.write(X.sub(G).norm2() + "\n");
+            for (int i = 0; i < X.rows; i++) {
+                for (int j = 0; j < X.columns; j++) {
+                    writer.write(matrixAbs(X.sub(G)).get(i, j) + " ");
+                }
+                writer.write("\n");
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+
     }
 
     /**
