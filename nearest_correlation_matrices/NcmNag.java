@@ -2,9 +2,13 @@ import java.lang.Math;
 import org.jblas.DoubleMatrix;
 import org.jblas.Eigen;
 import com.nag.routines.G02.G02AA;
+import org.tc33.jheatchart.HeatChart;
+import java.io.File;
+import java.io.IOException;
+import java.awt.Color;
 
 public class NcmNag {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         DoubleMatrix P = new DoubleMatrix(
                 new double[][] { { 59.875, 42.734, 47.938, 60.359, 54.016, 69.625, 61.500, 62.125 },
@@ -47,6 +51,8 @@ public class NcmNag {
         double[][] x_arr2d = convert1DTo2D(x_arr1d, ldx);
         DoubleMatrix X = new DoubleMatrix(x_arr2d);
 
+        iter = g02aa.getITER();
+
         System.out.println("Nearest correlation matrix");
         printMatrix(X.toArray2());
 
@@ -57,6 +63,15 @@ public class NcmNag {
 
         System.out.println();
 
+        HeatChart heatchart = new HeatChart(matrixAbs(X.sub(G)).toArray2());
+
+        heatchart.setTitle("|G-X| for G02AA");
+        //heatchart.setXAxisLabel(String.format("Iterations: %d, ||G-X||F = %.4f", iter, X.sub(G).norm2()));
+        //heatchart.setYAxisLabel("Y axis");
+        //heatchart.setChartMargin(40);
+        heatchart.setHighValueColour(Color.BLUE);
+
+        heatchart.saveToFile(new File("|G-X| for G02AA.png"));
     }
 
     /**
@@ -183,6 +198,18 @@ public class NcmNag {
             t[i] = a[i] || b[i];
         }
         return t;
+    }
+
+    public static DoubleMatrix matrixAbs(DoubleMatrix a) {
+        DoubleMatrix b = new DoubleMatrix(a.toArray2());
+
+        for (int i = 0; i < b.rows; i++) {
+            for (int j = 0; j < b.columns; j++) {
+                b.put(i, j, Math.abs(b.get(i, j)));
+            }
+        }
+
+        return b;
     }
 
     public static double[][] convert1DTo2D(double[] a, int n) {
