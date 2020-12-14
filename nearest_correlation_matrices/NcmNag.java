@@ -1,5 +1,7 @@
 import java.lang.Math;
 import org.jblas.DoubleMatrix;
+import org.jblas.Eigen;
+import com.nag.routines.G02.G02AA;
 
 public class NcmNag {
     public static void main(String[] args) {
@@ -16,11 +18,45 @@ public class NcmNag {
                         { 52.900, 52.690, 54.230, Double.NaN, 68.170, 70.600, 57.870, 88.640 },
                         { 57.370, 59.040, 59.870, 62.090, 61.620, 66.470, 65.370, 85.840 } });
 
-        int m = P.rows;
-        int n = P.columns;
-
         DoubleMatrix G = cor_bar(P);
+        System.out.println("The approximate correlation matrix");
         printMatrix(G.toArray2());
+
+        System.out.println();
+
+        System.out.print("Sorted eigenvalues of G: ");
+        printVector(Eigen.symmetricEigenvalues(G).toArray());
+
+        System.out.println();
+
+        // Call NAG routine G02AA and print the result
+        G02AA g02aa = new G02AA();
+        int n = G.rows;
+        int ldg = n;
+        int ldx = n;
+        double errtol = 0.0;
+        int maxits = 0;
+        int maxit = 0;
+        double[] x_arr1d = new double[ldx * n];
+        int iter = 0;
+        int feval = 0;
+        double nrmgrd = 0.0;
+        int ifail = 0;
+        g02aa.eval(G.toArray(), ldg, n, errtol, maxits, maxit, x_arr1d, ldx, iter, feval, nrmgrd, ifail);
+
+        double[][] x_arr2d = convert1DTo2D(x_arr1d, ldx);
+        DoubleMatrix X = new DoubleMatrix(x_arr2d);
+
+        System.out.println("Nearest correlation matrix");
+        printMatrix(X.toArray2());
+
+        System.out.println();
+
+        System.out.print("Sorted eigenvalues of X: ");
+        printVector(Eigen.symmetricEigenvalues(X).toArray());
+
+        System.out.println();
+
     }
 
     /**
@@ -147,6 +183,16 @@ public class NcmNag {
             t[i] = a[i] || b[i];
         }
         return t;
+    }
+
+    public static double[][] convert1DTo2D(double[] a, int n) {
+        double[][] b = new double[n][a.length / n];
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < b[0].length; j++) {
+                b[i][j] = a[i + j*n];
+            }
+        }   
+        return b;
     }
 
     public static void printMatrix(double[][] a) {
