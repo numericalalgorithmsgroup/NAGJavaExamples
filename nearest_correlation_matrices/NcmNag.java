@@ -1,4 +1,5 @@
 import com.nag.routines.G02.G02AA;
+import com.nag.routines.G02.G02AB;
 import com.nag.routines.F01.F01CK;
 import com.nag.routines.F08.F08NA;
 import com.nag.routines.F06.F06RC;
@@ -12,6 +13,9 @@ import java.io.FileWriter;
 public class NcmNag {
     public static void main(String[] args) {
 
+        // Initialize our P matrix of observations
+
+        // Define a 2-d array and use Double.NaN to set elements as NaNs
         double[][] P = new double[][] { { 59.875, 42.734, 47.938, 60.359, 54.016, 69.625, 61.500, 62.125 },
                 { 53.188, 49.000, 39.500, Double.NaN, 34.750, Double.NaN, 83.000, 44.500 },
                 { 55.750, 50.000, 38.938, Double.NaN, 30.188, Double.NaN, 70.875, 29.938 },
@@ -23,11 +27,15 @@ public class NcmNag {
                 { 52.900, 52.690, 54.230, Double.NaN, 68.170, 70.600, 57.870, 88.640 },
                 { 57.370, 59.040, 59.870, 62.090, 61.620, 66.470, 65.370, 85.840 } };
 
+        // Compute the approximate correlation matrix
+
         double[][] G = cor_bar(P);
         System.out.println("The approximate correlation matrix");
         printMatrix(G);
 
         System.out.println();
+
+        // Compute the eigenvalues of our (indefinite) G.
 
         F08NA f08na = new F08NA();
         String jobvl = "N";
@@ -52,6 +60,10 @@ public class NcmNag {
 
         System.out.println();
 
+        // Nearest Correlation Matrices
+
+        // Using G02AA to comput the nearest correlation matrix in the Frobenius norm
+
         // Call NAG routine G02AA and print the result
         G02AA g02aa = new G02AA();
         G1d = convert2DTo1D(G);
@@ -69,7 +81,6 @@ public class NcmNag {
         g02aa.eval(G1d, ldg, n, errtol, maxits, maxit, X1d, ldx, iter, feval, nrmgrd, ifail);
 
         double[][] X = convert1DTo2D(X1d, ldx);
-
         iter = g02aa.getITER();
 
         System.out.println("Nearest correlation matrix");
@@ -98,22 +109,82 @@ public class NcmNag {
 
         System.out.println();
 
-        try {
-            FileWriter writer = new FileWriter(new File("g02aa.d"));
-            writer.write(iter + "\n");
-            writer.write(X.sub(G).norm2() + "\n");
-            for (int i = 0; i < X.rows; i++) {
-                for (int j = 0; j < X.columns; j++) {
-                    writer.write(matrixAbs(X.sub(G)).get(i, j) + " ");
-                }
-                writer.write("\n");
-            }
-            writer.close();
+        double[][] X_G = matrixSub(X, G);
+        F06RC f06rc = new F06RC();
+        String norm = "F";
+        String uplo = "U";
+        n = X_G[0].length;
+        double[] X_G1d = convert2DTo1D(X_G);
+        lda = X_G.length;
+        work = new double[n];
+        double X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        printDataToFile("g02aa.d", iter, X_G, X_G_norm);
+
+        // Weighting rows and columns of elements
+
+        // Use corrmat_nearest_bounded to compute the nearest correlation matrix with row and column weighting
+
+        // Define an arrray of weights
+        double[] W = new double[] { 10, 10, 10, 1, 1, 1, 1, 1 };
+
+        // Set up and call the NAG routine using weights and a minimum eigenvalue
+        G02AB g02ab = new G02AB();
+        G1d = convert2DTo1D(G);
+        ldg = G.length;
+        n = G[0].length;
+        String opt = "B";
+        double alpha = 0.001;
+        errtol = 0.0;
+        maxits = 0;
+        maxit = 0;
+        ldx = n;
+        X1d = new double[ldx * n];
+        iter = 0;
+        feval = 0;
+        nrmgrd = 0;
+        ifail = 0;
+        g02ab.eval(G1d, ldg, n, opt, alpha, W, errtol, maxits, maxit, X1d, ldx, iter, feval, nrmgrd, ifail);
+
+        X = convert1DTo2D(X1d, ldx);
+        iter = g02ab.getITER();
+
+        System.out.println("Nearest correlation matrix using row and column weighting");
+        printMatrix(X);
+
+        System.out.println();
+
+        jobvl = "N";
+        jobvr = "N";
+        n = X[0].length;
+        lda = X.length;
+        wr = new double[n];
+        wi = new double[n];
+        ldvl = 1;
+        vl = new double[ldvl];
+        ldvr = 1;
+        vr = new double[ldvr];
+        lwork = 3 * n;
+        work = new double[lwork];
+        info = 0;
+        f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+
+        System.out.print("Sorted eigenvalues of X: ");
+        Arrays.sort(wr);
+        printVector(wr);
+
+        System.out.println();
+
+        X_G = matrixSub(X, G);
+        norm = "F";
+        uplo = "U";
+        n = X_G[0].length;
+        X_G1d = convert2DTo1D(X_G);
+        lda = X_G.length;
+        work = new double[n];
+        X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
+
+        printDataToFile("g02ab.d", iter, X_G, X_G_norm);
 
     }
 
@@ -190,6 +261,26 @@ public class NcmNag {
         return convert1DTo2D(D_, n);
     }
 
+    private static void printDataToFile(String fileName, int iter, double[][] X_G, double X_G_norm) {
+        double[][] absX_G = matrixAbs(X_G);
+        try {
+            FileWriter writer = new FileWriter(new File(fileName));
+            writer.write(iter + "\n");
+            writer.write(X_G_norm + "\n");
+            for (int i = 0; i < X_G.length; i++) {
+                for (int j = 0; j < X_G[0].length; j++) {
+                    writer.write(absX_G[i][j] + " ");
+                }
+                writer.write("\n");
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public static double matrixMaskedDot(double[] a, double[] b, boolean[] mask) {
         if ((a.length != b.length) || (a.length != mask.length) || (b.length != mask.length)) {
             System.out.println("Arrays a(" + a.length + "), b(" + b.length + ") and mask(" + mask.length
@@ -263,6 +354,21 @@ public class NcmNag {
         double[] t = new double[a.length];
         for (int i = 0; i < t.length; i++) {
             t[i] = a[i] - s;
+        }
+        return t;
+    }
+
+    public static double[][] matrixSub(double[][] a, double[][] b) {
+        if (a.length != b.length) {
+            System.out.println("Arrays a(" + a.length + ") and b(" + b.length + ") need to have the same length.");
+            System.exit(-1);
+        }
+
+        double[][] t = new double[a.length][a[0].length];
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[0].length; j++) {
+                t[i][j] = a[i][j] - b[i][j];
+            }
         }
         return t;
     }
