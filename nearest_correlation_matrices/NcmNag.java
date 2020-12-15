@@ -266,7 +266,69 @@ public class NcmNag {
 
         printDataToFile("g02aj.d", iter, X_G, X_G_norm);
 
-        
+        // Fixing a Block of Elements
+
+        // Use G02AN to compute the nearest correlation matrix with fixed leading block
+
+        // Call the NAG routine fixing the top 3-by-3 block
+        G02AN g02an = new G02AN();
+        G1d = convert2DTo1D(G);
+        ldg = G.length;
+        n = G[0].length;
+        int k = 3;
+        errtol = 0;
+        double eigtol = 0;
+        ldx = n;
+        X1d = new double[ldx * n];
+        alpha = 0.001;
+        iter = 0;
+        double eigmin = 0;
+        norm2 = 0;
+        ifail = 0; 
+        g02an.eval(G1d, ldg, n, k, errtol, eigtol, X1d, ldx, alpha, iter, eigmin, norm2, ifail);
+
+        X = convert1DTo2D(X1d, ldx);
+        iter = g02an.getITER();
+        alpha = g02an.getALPHA();
+
+        System.out.println("Nearest correlation matrix with fixed leading block");
+        printMatrix(X);
+
+        System.out.println();
+
+        jobvl = "N";
+        jobvr = "N";
+        n = X[0].length;
+        lda = X.length;
+        wr = new double[n];
+        wi = new double[n];
+        ldvl = 1;
+        vl = new double[ldvl];
+        ldvr = 1;
+        vr = new double[ldvr];
+        lwork = 3 * n;
+        work = new double[lwork];
+        info = 0;
+        f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+
+        System.out.print("Sorted eigenvalues of X: ");
+        Arrays.sort(wr);
+        printVector(wr);
+
+        System.out.printf("Value of alpha returned: %.4f\n", alpha);
+
+        System.out.println();
+
+        X_G = matrixSub(X, G);
+        norm = "F";
+        uplo = "U";
+        n = X_G[0].length;
+        X_G1d = convert2DTo1D(X_G);
+        lda = X_G.length;
+        work = new double[n];
+        X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
+
+        printDataToFile("g02an.d", iter, X_G, X_G_norm);
 
     }
 
