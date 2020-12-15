@@ -1,5 +1,7 @@
 import com.nag.routines.G02.G02AA;
 import com.nag.routines.G02.G02AB;
+import com.nag.routines.G02.G02AJ;
+import com.nag.routines.G02.G02AN;
 import com.nag.routines.F01.F01CK;
 import com.nag.routines.F08.F08NA;
 import com.nag.routines.F06.F06RC;
@@ -62,7 +64,7 @@ public class NcmNag {
 
         // Nearest Correlation Matrices
 
-        // Using G02AA to comput the nearest correlation matrix in the Frobenius norm
+        // Using G02AA to compute the nearest correlation matrix in the Frobenius norm
 
         // Call NAG routine G02AA and print the result
         G02AA g02aa = new G02AA();
@@ -123,7 +125,7 @@ public class NcmNag {
 
         // Weighting rows and columns of elements
 
-        // Use corrmat_nearest_bounded to compute the nearest correlation matrix with row and column weighting
+        // Use G02AB to compute the nearest correlation matrix with row and column weighting
 
         // Define an arrray of weights
         double[] W = new double[] { 10, 10, 10, 1, 1, 1, 1, 1 };
@@ -185,6 +187,86 @@ public class NcmNag {
         X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
         printDataToFile("g02ab.d", iter, X_G, X_G_norm);
+
+        // Weighting Individual Elements
+
+        // Use G02AJ to compute the nearest correlation matrix with element-wise weighting
+
+        // Set up a matrix of weights
+        n = P[0].length;
+        double[][] H = new double[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i < 3) && (j < 3)) {
+                    H[i][j] = 100.0;
+                } else {
+                    H[i][j] = 1;
+                }
+            }
+        }
+        printMatrix(H);
+
+        System.out.println();
+
+        // Call the NAG routine specifying a minimum eigenvalue
+        G02AJ g02aj = new G02AJ();
+        G1d = convert2DTo1D(G);
+        ldg = G.length;
+        n = G[0].length;
+        alpha = 0.001;
+        double[] H1d = convert2DTo1D(H);
+        int ldh = H.length;
+        errtol = 0;
+        maxit = 0;
+        ldx = n;
+        X1d = new double[ldx * n];
+        iter = 0;
+        double norm2 = 0;
+        ifail = 0;
+        g02aj.eval(G1d, ldg, n, alpha, H1d, ldh, errtol, maxit, X1d, ldx, iter, norm2, ifail);
+
+        X = convert1DTo2D(X1d, ldx);
+        iter = g02aj.getITER();
+
+        System.out.println("Nearest correlation matrix using element-wise weighting");
+        printMatrix(X);
+
+        System.out.println();
+
+        jobvl = "N";
+        jobvr = "N";
+        n = X[0].length;
+        lda = X.length;
+        wr = new double[n];
+        wi = new double[n];
+        ldvl = 1;
+        vl = new double[ldvl];
+        ldvr = 1;
+        vr = new double[ldvr];
+        lwork = 3 * n;
+        work = new double[lwork];
+        info = 0;
+        f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+
+        System.out.print("Sorted eigenvalues of X: ");
+        Arrays.sort(wr);
+        Arrays.sort(wi);
+        printComplexVector(wr, wi);
+
+        System.out.println();
+
+        X_G = matrixSub(X, G);
+        norm = "F";
+        uplo = "U";
+        n = X_G[0].length;
+        X_G1d = convert2DTo1D(X_G);
+        lda = X_G.length;
+        work = new double[n];
+        X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
+
+        printDataToFile("g02aj.d", iter, X_G, X_G_norm);
+
+        
 
     }
 
@@ -261,7 +343,7 @@ public class NcmNag {
         return convert1DTo2D(D_, n);
     }
 
-    private static void printDataToFile(String fileName, int iter, double[][] X_G, double X_G_norm) {
+    public static void printDataToFile(String fileName, int iter, double[][] X_G, double X_G_norm) {
         double[][] absX_G = matrixAbs(X_G);
         try {
             FileWriter writer = new FileWriter(new File(fileName));
@@ -432,7 +514,7 @@ public class NcmNag {
     public static void printMatrix(double[][] a) {
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a[0].length; j++) {
-                System.out.printf("%7.4f ", a[i][j]);
+                System.out.printf("%8.4f ", a[i][j]);
             }
             System.out.println();
         }
@@ -440,14 +522,19 @@ public class NcmNag {
 
     public static void printVector(double[] a) {
         for (int i = 0; i < a.length; i++) {
-            System.out.printf("%7.4f ", a[i]);
+            System.out.printf("%8.4f ", a[i]);
         }
         System.out.println();
     }
 
-    public static void printVector(boolean[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.printf("%5b ", a[i]);
+    public static void printComplexVector(double[] r, double[] i) {
+        if (r.length != i.length) {
+            System.out.println("Arrays r(" + r.length + ") and i(" + i.length + ") need to have the same length.");
+            System.exit(-1);
+        }
+        
+        for (int j = 0; j < r.length; j++) {
+            System.out.printf("%8.4f%+.4fj", r[j], i[j]);
         }
         System.out.println();
     }
