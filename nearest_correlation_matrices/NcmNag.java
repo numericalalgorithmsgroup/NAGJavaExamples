@@ -211,6 +211,7 @@ public class NcmNag {
             }
         }
         printMatrix(H);
+        printMatrixToFile(H, "H_G02AJ.d");
 
         System.out.println();
 
@@ -236,6 +237,7 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix using element-wise weighting");
         printMatrix(X);
+        printMatrixToFile(X, "X_G02AJ.d");
 
         System.out.println();
 
@@ -253,11 +255,11 @@ public class NcmNag {
         work = new double[lwork];
         info = 0;
         f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+        Arrays.sort(wr);
 
         System.out.print("Sorted eigenvalues of X: ");
-        Arrays.sort(wr);
-        Arrays.sort(wi);
-        printComplexVector(wr, wi);
+        printVector(wr);
+        printVectorToFile(wr, "X_eigen_G02AJ.d");
 
         System.out.println();
 
@@ -625,18 +627,6 @@ public class NcmNag {
     public static void printVector(double[] a) {
         for (int i = 0; i < a.length; i++) {
             System.out.printf("%8.4f ", a[i]);
-        }
-        System.out.println();
-    }
-
-    public static void printComplexVector(double[] r, double[] i) {
-        if (r.length != i.length) {
-            System.out.println("Arrays r(" + r.length + ") and i(" + i.length + ") need to have the same length.");
-            System.exit(-1);
-        }
-        
-        for (int j = 0; j < r.length; j++) {
-            System.out.printf("%8.4f%+.4fj", r[j], i[j]);
         }
         System.out.println();
     }
