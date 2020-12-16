@@ -157,6 +157,7 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix using row and column weighting");
         printMatrix(X);
+        printMatrixToFile(X, "X_G02AB.d");
 
         System.out.println();
 
@@ -174,10 +175,11 @@ public class NcmNag {
         work = new double[lwork];
         info = 0;
         f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+        Arrays.sort(wr);
 
         System.out.print("Sorted eigenvalues of X: ");
-        Arrays.sort(wr);
         printVector(wr);
+        printVectorToFile(wr, "X_eigen_G02AB.d");
 
         System.out.println();
 
