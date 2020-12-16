@@ -34,6 +34,7 @@ public class NcmNag {
         double[][] G = cor_bar(P);
         System.out.println("The approximate correlation matrix");
         printMatrix(G);
+        printMatrixToFile(G, "G.d");
 
         System.out.println();
 
@@ -55,10 +56,11 @@ public class NcmNag {
         double[] work = new double[lwork];
         int info = 0;
         f08na.eval(jobvl, jobvr, n, G1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+        Arrays.sort(wr);
 
         System.out.print("Sorted eigenvalues of G: ");
-        Arrays.sort(wr);
         printVector(wr);
+        printVectorToFile(wr, "G_eigen.d");
 
         System.out.println();
 
@@ -87,6 +89,7 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix");
         printMatrix(X);
+        printMatrixToFile(X, "X_G02AA.d");
 
         System.out.println();
 
@@ -104,10 +107,11 @@ public class NcmNag {
         work = new double[lwork];
         info = 0;
         f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
+        Arrays.sort(wr);
 
         System.out.print("Sorted eigenvalues of X: ");
-        Arrays.sort(wr);
         printVector(wr);
+        printVectorToFile(wr, "X_eigen_G02AA.d");
 
         System.out.println();
 
@@ -339,7 +343,6 @@ public class NcmNag {
      * @return
      */
     public static double[][] cov_bar(double[][] P) {
-
         double[] xi, xj;
         boolean[] xib, xjb, notp;
         int n = P[0].length;
@@ -349,6 +352,7 @@ public class NcmNag {
         for (int i = 0; i < n; i++) {
             // Take the ith column
             xi = getMatrixColumn(P, i);
+
             for (int j = 0; j < i + 1; j++) {
                 // Take the jth column, where j <= i
                 xj = getMatrixColumn(P, j);
@@ -359,6 +363,7 @@ public class NcmNag {
 
                 notp = addBoolArrOr(xib, xjb);
 
+                // S[i][j] = (xi - mean(xi)) * (xj - mean(xj))
                 S[i][j] = matrixMaskedDot(vectorSubScalar(xi, vectorMaskedMean(xi, notp)),
                         vectorSubScalar(xj, vectorMaskedMean(xj, notp)), notp);
 
@@ -384,8 +389,10 @@ public class NcmNag {
     public static double[][] cor_bar(double[][] P) {
         double[][] S, D;
         S = cov_bar(P);
+        // D = 1.0 / SQRT(S)
         D = getMatrixFromDiag(vectorRightDiv(vectorSqrt(getMatrixDiag(S)), 1.0));
 
+        // S_ = S * D
         F01CK f01ck = new F01CK();
         double[] S_ = new double[S.length * S[0].length];
         double[] S1d = convert2DTo1D(S);
@@ -399,6 +406,7 @@ public class NcmNag {
         int ifail = 0;
         f01ck.eval(S_, S1d, D1d, n, p, m, z, iz, opt, ifail);
 
+        // D_ = D * S_
         double[] D_ = new double[n * n];
         f01ck.eval(D_, D1d, S_, n, p, m, z, iz, opt, ifail);
 
@@ -579,6 +587,36 @@ public class NcmNag {
                 System.out.printf("%8.4f ", a[i][j]);
             }
             System.out.println();
+        }
+    }
+
+    public static void printMatrixToFile(double[][] a, String fileName) {
+        try {
+            FileWriter writer = new FileWriter(new File(fileName));
+            for (int i = 0; i < a.length; i++) {
+                for (int j = 0; j < a[0].length; j++) {
+                    writer.write(a[i][j] + " ");
+                }
+                writer.write("\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void printVectorToFile(double[] a, String fileName) {
+        try {
+            FileWriter writer = new FileWriter(new File(fileName));
+            for (int i = 0; i < a.length; i++) {
+                writer.write(a[i] + " ");
+            }
+            writer.write("\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
