@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.FileWriter;
 
 public class NcmNag {
+
+    public static String dataFolder = "data";
     public static void main(String[] args) {
 
         // Initialize our P matrix of observations
@@ -63,6 +65,7 @@ public class NcmNag {
         printVectorToFile(wr, "G_eigen.d");
 
         System.out.println();
+
 
         // Nearest Correlation Matrices
 
@@ -125,7 +128,8 @@ public class NcmNag {
         work = new double[n];
         double X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
-        printDataToFile("g02aa.d", iter, X_G, X_G_norm);
+        printDataToFile("G02AA.d", iter, X_G, X_G_norm);
+
 
         // Weighting rows and columns of elements
 
@@ -192,7 +196,8 @@ public class NcmNag {
         work = new double[n];
         X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
-        printDataToFile("g02ab.d", iter, X_G, X_G_norm);
+        printDataToFile("G02AB.d", iter, X_G, X_G_norm);
+
 
         // Weighting Individual Elements
 
@@ -272,8 +277,9 @@ public class NcmNag {
         work = new double[n];
         X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
-        printDataToFile("g02aj.d", iter, X_G, X_G_norm);
+        printDataToFile("G02AJ.d", iter, X_G, X_G_norm);
 
+        
         // Fixing a Block of Elements
 
         // Use G02AN to compute the nearest correlation matrix with fixed leading block
@@ -339,7 +345,7 @@ public class NcmNag {
         work = new double[n];
         X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
-        printDataToFile("g02an.d", iter, X_G, X_G_norm);
+        printDataToFile("G02AN.d", iter, X_G, X_G_norm);
 
     }
 
@@ -423,7 +429,7 @@ public class NcmNag {
     public static void printDataToFile(String fileName, int iter, double[][] X_G, double X_G_norm) {
         double[][] absX_G = matrixAbs(X_G);
         try {
-            FileWriter writer = new FileWriter(new File(fileName));
+            FileWriter writer = new FileWriter(new File(dataFolder + File.separator + fileName));
             writer.write(iter + "\n");
             writer.write(X_G_norm + "\n");
             for (int i = 0; i < X_G.length; i++) {
@@ -599,7 +605,7 @@ public class NcmNag {
 
     public static void printMatrixToFile(double[][] a, String fileName) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName));
+            FileWriter writer = new FileWriter(new File(dataFolder + File.separator + fileName));
             for (int i = 0; i < a.length; i++) {
                 for (int j = 0; j < a[0].length; j++) {
                     writer.write(a[i][j] + " ");
@@ -615,7 +621,7 @@ public class NcmNag {
 
     public static void printVectorToFile(double[] a, String fileName) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName));
+            FileWriter writer = new FileWriter(new File(dataFolder + File.separator + fileName));
             for (int i = 0; i < a.length; i++) {
                 writer.write(a[i] + " ");
             }
