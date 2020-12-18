@@ -30,7 +30,7 @@ You can get the NAG Library from [here](https://www.nag.com/content/nag-library)
 
 Before you can use the NAG Library for Java, you'll need a license. Free trial licenses are available!
 
-To request a licence key, you first need to know your Kusari *hostid* and email that along with the Product Code to [support@nag.com](mailto:support@nag.com).
+To request a licence key, you first need to know your Kusari *hostid* and email that along with the *Product Code* to [support@nag.com](mailto:support@nag.com).
 
 To get your *khostid*:
 
