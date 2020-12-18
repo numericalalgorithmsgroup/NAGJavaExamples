@@ -59,6 +59,8 @@ More detailed installation instructions are availavle in the [Installer's Note](
 
 ## NAG Library for Java installation
 
+You can get the NAG Library for Java from [here](https://www.nag.com/content/nag-library-java-download).
+
 ### Linux
 
 To install the NAG Library for Java, you simply have to unzip the distribution file and copy two files to convenient locations on your system:
