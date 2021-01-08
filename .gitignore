@@ -1,3 +1,4 @@
 *.class
 myvenv
 .ipynb_checkpoints
+workspace.code-workspace
