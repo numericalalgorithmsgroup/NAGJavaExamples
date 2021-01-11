@@ -1,7 +1,7 @@
-![NAG Logo](./nag_logo.png)
-
 > ## Important Information
 > This repository is still under development.
+
+![NAG Logo](./nag_logo.png)
 
 # Examples using the NAG Library for Java
 
