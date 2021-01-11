@@ -1,5 +1,8 @@
 ![NAG Logo](./nag_logo.png)
 
+> ## Important Information
+> This repository is still under development.
+
 # Examples using the NAG Library for Java
 
 This repository contains examples and demonstrations using the [NAG Library for Java](https://www.nag.com/content/nag-library-for-java).  The NAG Library for Java contains 1900+ functions spanning many areas of numerical computing and data science.
