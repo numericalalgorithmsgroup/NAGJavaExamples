@@ -349,7 +349,7 @@ Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117  
 
 <!-- ![\|G-X\| for G02AA](img/G02AA.png) -->
 <div style="text-align: center;">
-    <img src=>
+    <img src="img/G02AA.png">
 </div>
 
 # Weighting rows and columns of elements
