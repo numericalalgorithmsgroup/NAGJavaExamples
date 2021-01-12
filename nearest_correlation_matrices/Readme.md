@@ -347,7 +347,7 @@ Arrays.sort(wr);
 Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117   1.9217   3.4661 
 ```
 
-![$$|G-X|$$ for G02AA](img/G02AA.png)
+![|G-X| for G02AA](img/G02AA.png)
 
 # Weighting rows and columns of elements
 
