@@ -39,10 +39,11 @@ $$ \large S_{ij}=\frac{1}{m-1}(p_i - \bar{p}_i )^T(p_j - \bar{p}_j) $$
 
 * $$R$$ is the corresponding correlation matrix, given by: 
 
-
+$$
 \begin{align*} \large D_S^{1/2} & = \large \textrm{ diag}(s_{11}^{-1/2},s_{22}^{-1/2}, \ldots, s_{nn}^{-1/2}) \nonumber \\  &  \\
 \large R & = \large D_S^{1/2} S D_S^{1/2} 
 \end{align*}
+$$
 
 
 ## Approximate Correlation Matrices
@@ -102,12 +103,13 @@ $$
 
 * And to compute the covariance between the 3rd and 4th variables: 
 
-
+$$
 \begin{align*}  
 \large v_1^T   & = \large [47.938, 45.563, 52.313, 53.438, 62.190, 60.300, 59.870]   \\
 \large v_2^T   & = \large [60.359, 69.313, 71.016, 57.000, 61.390, 68.580, 62.090]   \\ 
 S_{3,4}        & = \large \frac{1}{6} (v_1 - \bar{v}_1 )^T(v_2 - \bar{v}_2) 
 \end{align*}
+$$
 
 * Let's compute this in Java.
 
