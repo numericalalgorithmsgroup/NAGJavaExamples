@@ -347,7 +347,6 @@ Arrays.sort(wr);
 Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117   1.9217   3.4661 
 ```
 
-<!-- ![\|G-X\| for G02AA](img/G02AA.png) -->
 <div style="text-align: center;">
     <img src="img/G02AA.png">
 </div>
@@ -415,7 +414,7 @@ X = convert1DTo2D(X1d, ldx);
 iter = g02ab.getITER();
 ```
 
-</br>
+<br/>
 
 ```
 Nearest correlation matrix using row and column weighting
@@ -430,7 +429,7 @@ Nearest correlation matrix using row and column weighting
 
 ```
 
-</br>
+<br/>
 
 ```java
 jobvl = "N";
@@ -450,11 +449,17 @@ f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, i
 Arrays.sort(wr);
 ```
 
-</br>
+<br/>
 
 ```
 Sorted eigenvalues of X:   0.0010   0.0010   0.0305   0.1646   0.6764   1.7716   1.8910   3.4639 
 ```
+
+<br/>
+
+<div style="text-align: center;">
+    <img src="img/G02AB.png">
+</div>
 
 # Weighting Individual Elements
 
@@ -470,7 +475,7 @@ Sorted eigenvalues of X:   0.0010   0.0010   0.0305   0.1646   0.6764   1.7716  
 $$ \Large \|H \circ(G-X) \|_F $$ 
 
 
-* So individually $$h_{ij} \times (g_{ij} – x_{ij}).$$
+* So individually $$h_{ij} \times (g_{ij} \minus x_{ij}).$$
 
 
 * However, this is a more “difficult” problem, and more computationally expensive. 
@@ -495,6 +500,21 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
+<br/>
+
+```
+100.0000 100.0000 100.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+100.0000 100.0000 100.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+100.0000 100.0000 100.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+  1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000 
+```
+
+<br/>
+
 ```java
 // Call the NAG routine specifying a minimum eigenvalue
 G02AJ g02aj = new G02AJ();
@@ -517,6 +537,22 @@ X = convert1DTo2D(X1d, ldx);
 iter = g02aj.getITER();
 ```
 
+<br/>
+
+```
+Nearest correlation matrix using element-wise weighting
+  1.0000  -0.3251   0.1881   0.5371   0.0255  -0.5893  -0.0625  -0.1929 
+ -0.3251   1.0000   0.2048   0.2249   0.4144   0.2841   0.2914   0.4081 
+  0.1881   0.2048   1.0000  -0.1462   0.7883   0.2718  -0.6084   0.8804 
+  0.5371   0.2249  -0.1462   1.0000   0.2138  -0.0002   0.6070  -0.2199 
+  0.0255   0.4144   0.7883   0.2138   1.0000   0.6566  -0.2807   0.8756 
+ -0.5893   0.2841   0.2718  -0.0002   0.6566   1.0000   0.0474   0.5930 
+ -0.0625   0.2914  -0.6084   0.6070  -0.2807   0.0474   1.0000  -0.4471 
+ -0.1929   0.4081   0.8804  -0.2199   0.8756   0.5930  -0.4471   1.0000 
+```
+
+<br/>
+
 ```java
 jobvl = "N";
 jobvr = "N";
@@ -533,8 +569,19 @@ work = new double[lwork];
 info = 0;
 f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
-Arrays.sort(wi);
 ```
+
+<br/>
+
+```
+Sorted eigenvalues of X:   0.0010   0.0010   0.0375   0.1734   0.6882   1.7106   1.9224   3.4660 
+```
+
+<br/>
+
+<div style="text-align: center;">
+    <img src="img/G02AJ.png">
+</div>
 
 # Fixing a Block of Elements
 
@@ -591,6 +638,22 @@ iter = g02an.getITER();
 alpha = g02an.getALPHA();
 ```
 
+<br/>
+
+```
+Nearest correlation matrix with fixed leading block
+  1.0000  -0.3250   0.1881   0.4606   0.0051  -0.4887  -0.0579  -0.1271 
+ -0.3250   1.0000   0.2048   0.1948   0.3245   0.2183   0.2294   0.3391 
+  0.1881   0.2048   1.0000  -0.1060   0.6124   0.2211  -0.4936   0.7202 
+  0.4606   0.1948  -0.1060   1.0000   0.2432   0.0101   0.5160  -0.2567 
+  0.0051   0.3245   0.6124   0.2432   1.0000   0.5320  -0.2634   0.7949 
+ -0.4887   0.2183   0.2211   0.0101   0.5320   1.0000   0.0393   0.4769 
+ -0.0579   0.2294  -0.4936   0.5160  -0.2634   0.0393   1.0000  -0.3185 
+ -0.1271   0.3391   0.7202  -0.2567   0.7949   0.4769  -0.3185   1.0000 
+ ```
+
+ <br/>
+
 ```java
 jobvl = "N";
 jobvr = "N";
@@ -608,6 +671,19 @@ info = 0;
 f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
 ```
+
+<br/>
+
+```
+Sorted eigenvalues of X:   0.0000   0.1375   0.2744   0.3804   0.7768   1.6263   1.7689   3.0356 
+Value of alpha returned: 0.2003
+```
+
+<br/>
+
+<div style="text-align: center;">
+    <img src="img/G02AJ.png">
+</div>
 
 # Fixing Arbitrary Elements
 
