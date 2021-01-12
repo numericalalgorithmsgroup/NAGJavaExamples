@@ -1,8 +1,18 @@
-# Nearest Correlation Matrices using the NAG Library for Java
+# Nearest Correlation Matrices
 
-* [ncm_whitepaper_2019.pdf](./ncm_whitepaper_2019.pdf) Nearest Correlation Matrices whitepaper
-* [NcmNag.java](./NcmNag.java) Nearest Correlation Matrices Java Source File, which outputs data files for *ncm_nag.ipynb* to use.
-* [output.txt](./output.txt) Output of NcmNag.java
-* [ncm_nag.ipynb](./ncm_nag.ipynb) Nearest Correlation Matrices Tutorial, which reads the data files produced from *NcmNag.java* and renders the output using Python
-* [ncm_nag.pdf](./ncm_nag.pdf) PDF version of ncm_nag.ipynb, without the Input cells
+This notebook looks at computing *nearest correlation matrices* using the NAG Library for *Java*.
 
+The source of this example is in [NcmNag.java](./NcmNag.java).
+
+## Correlation Matrices
+
+* An $n$ by $n$ matrix is a correlation matrix if:
+  * it is symmetric
+  * it has ones on the diagonal 
+  * its eigenvalues are non-negative (positive semidefinite)           
+  
+  
+  $$ \Large Ax = \lambda x, \quad x \neq 0$$
+
+
+* The element in the $i$th row and $j$th column is the correlation between the $i$th and $j$th variables. This could be stock process, for example.
