@@ -1,8 +1,11 @@
+> ## Important Information
+> To properly read the documentation click [here](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/).
+
 # Nearest Correlation Matrices
 
 This notebook looks at computing *nearest correlation matrices* using the NAG Library for *Java*.
 
-The source of this example is in [NcmNag.java](./NcmNag.java).
+The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/NcmNag.java).
 
 ## Correlation Matrices
 
@@ -208,6 +211,18 @@ public static double[][] cor_bar(double[][] P) {
 double[][] G = cor_bar(P);
 ```
 
+```
+The approximate correlation matrix
+  1.0000  -0.3250   0.1881   0.5760   0.0064  -0.6111  -0.0724  -0.1589 
+ -0.3250   1.0000   0.2048   0.2436   0.4058   0.2730   0.2869   0.4241 
+  0.1881   0.2048   1.0000  -0.1325   0.7658   0.2765  -0.6172   0.9006 
+  0.5760   0.2436  -0.1325   1.0000   0.3041   0.0126   0.6452  -0.3210 
+  0.0064   0.4058   0.7658   0.3041   1.0000   0.6652  -0.3293   0.9939 
+ -0.6111   0.2730   0.2765   0.0126   0.6652   1.0000   0.0492   0.5964 
+ -0.0724   0.2869  -0.6172   0.6452  -0.3293   0.0492   1.0000  -0.3983 
+ -0.1589   0.4241   0.9006  -0.3210   0.9939   0.5964  -0.3983   1.0000 
+```
+
 ### Compute the eigenvalues of our (indefinite) *G*.
 
 * We see below that our matrix $$G$$ is not a mathematically true correlation matrix.
@@ -230,6 +245,10 @@ double[] work = new double[lwork];
 int info = 0;
 f08na.eval(jobvl, jobvr, n, G1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
+```
+
+```
+Sorted eigenvalues of G:  -0.2498  -0.0160   0.0895   0.2192   0.7072   1.7534   1.9611   3.5355 
 ```
 
 # Nearest Correlation Matrices
@@ -282,6 +301,18 @@ double[][] X = convert1DTo2D(X1d, ldx);
 iter = g02aa.getITER();
 ```
 
+```
+Nearest correlation matrix
+  1.0000  -0.3112   0.1889   0.5396   0.0268  -0.5925  -0.0621  -0.1921 
+ -0.3112   1.0000   0.2050   0.2265   0.4148   0.2822   0.2915   0.4088 
+  0.1889   0.2050   1.0000  -0.1468   0.7880   0.2727  -0.6085   0.8802 
+  0.5396   0.2265  -0.1468   1.0000   0.2137   0.0015   0.6069  -0.2208 
+  0.0268   0.4148   0.7880   0.2137   1.0000   0.6580  -0.2812   0.8762 
+ -0.5925   0.2822   0.2727   0.0015   0.6580   1.0000   0.0479   0.5932 
+ -0.0621   0.2915  -0.6085   0.6069  -0.2812   0.0479   1.0000  -0.4470 
+ -0.1921   0.4088   0.8802  -0.2208   0.8762   0.5932  -0.4470   1.0000 
+```
+
 ```java
 jobvl = "N";
 jobvr = "N";
@@ -299,6 +330,12 @@ info = 0;
 f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
 ```
+
+```
+Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117   1.9217   3.4661 
+```
+
+![$$|G-X|$$ for G02AA](./img/G02AA.png)
 
 # Weighting rows and columns of elements
 
