@@ -347,7 +347,10 @@ Arrays.sort(wr);
 Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117   1.9217   3.4661 
 ```
 
-![\|G-X\| for G02AA](img/G02AA.png)
+<!-- ![\|G-X\| for G02AA](img/G02AA.png) -->
+<div style="text-align: center;">
+    <img src=>
+</div>
 
 # Weighting rows and columns of elements
 
@@ -412,6 +415,23 @@ X = convert1DTo2D(X1d, ldx);
 iter = g02ab.getITER();
 ```
 
+</br>
+
+```
+Nearest correlation matrix using row and column weighting
+  1.0000  -0.3250   0.1881   0.5739   0.0067  -0.6097  -0.0722  -0.1598 
+ -0.3250   1.0000   0.2048   0.2426   0.4060   0.2737   0.2870   0.4236 
+  0.1881   0.2048   1.0000  -0.1322   0.7661   0.2759  -0.6171   0.9004 
+  0.5739   0.2426  -0.1322   1.0000   0.2085  -0.0890   0.5954  -0.1805 
+  0.0067   0.4060   0.7661   0.2085   1.0000   0.6556  -0.2780   0.8757 
+ -0.6097   0.2737   0.2759  -0.0890   0.6556   1.0000   0.0490   0.5746 
+ -0.0722   0.2870  -0.6171   0.5954  -0.2780   0.0490   1.0000  -0.4550 
+ -0.1598   0.4236   0.9004  -0.1805   0.8757   0.5746  -0.4550   1.0000 
+
+```
+
+</br>
+
 ```java
 jobvl = "N";
 jobvr = "N";
@@ -428,6 +448,12 @@ work = new double[lwork];
 info = 0;
 f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
+```
+
+</br>
+
+```
+Sorted eigenvalues of X:   0.0010   0.0010   0.0305   0.1646   0.6764   1.7716   1.8910   3.4639 
 ```
 
 # Weighting Individual Elements
