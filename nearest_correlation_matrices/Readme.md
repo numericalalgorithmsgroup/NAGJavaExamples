@@ -176,6 +176,8 @@ public static double[][] cov_bar(double[][] P) {
 }
 ```
 
+<br/>
+
 ```java
 public static double[][] cor_bar(double[][] P) {
     double[][] S, D;
@@ -210,6 +212,8 @@ public static double[][] cor_bar(double[][] P) {
 ```java
 double[][] G = cor_bar(P);
 ```
+
+<br/>
 
 ```
 The approximate correlation matrix
@@ -246,6 +250,8 @@ int info = 0;
 f08na.eval(jobvl, jobvr, n, G1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info);
 Arrays.sort(wr);
 ```
+
+<br/>
 
 ```
 Sorted eigenvalues of G:  -0.2498  -0.0160   0.0895   0.2192   0.7072   1.7534   1.9611   3.5355 
@@ -301,6 +307,8 @@ double[][] X = convert1DTo2D(X1d, ldx);
 iter = g02aa.getITER();
 ```
 
+<br/>
+
 ```
 Nearest correlation matrix
   1.0000  -0.3112   0.1889   0.5396   0.0268  -0.5925  -0.0621  -0.1921 
@@ -312,6 +320,8 @@ Nearest correlation matrix
  -0.0621   0.2915  -0.6085   0.6069  -0.2812   0.0479   1.0000  -0.4470 
  -0.1921   0.4088   0.8802  -0.2208   0.8762   0.5932  -0.4470   1.0000 
 ```
+
+<br/>
 
 ```java
 jobvl = "N";
@@ -331,11 +341,13 @@ f08na.eval(jobvl, jobvr, n, X1d, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, i
 Arrays.sort(wr);
 ```
 
+<br/>
+
 ```
 Sorted eigenvalues of X:  -0.0000   0.0000   0.0380   0.1731   0.6894   1.7117   1.9217   3.4661 
 ```
 
-![$$|G-X|$$ for G02AA](./img/G02AA.png)
+![$$|G-X|$$ for G02AA](img/G02AA.png)
 
 # Weighting rows and columns of elements
 
