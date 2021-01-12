@@ -1,7 +1,7 @@
 > ## Important Information
 > This repository is still under development.
 
-![NAG Logo](./nag_logo.png)
+![NAG Logo](./nag_logo-removebg.png)
 
 # Examples using the NAG Library for Java
 
