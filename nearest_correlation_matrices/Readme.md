@@ -682,7 +682,7 @@ Value of alpha returned: 0.2003
 <br/>
 
 <div style="text-align: center;">
-    <img src="img/G02AJ.png">
+    <img src="img/G02AN.png">
 </div>
 
 # Fixing Arbitrary Elements
