@@ -6,7 +6,7 @@ The source of this example is in [NcmNag.java](./NcmNag.java).
 
 ## Correlation Matrices
 
-* An $n$ by $n$ matrix is a correlation matrix if:
+* An $$n$$ by $n$ matrix is a correlation matrix if:
   * it is symmetric
   * it has ones on the diagonal 
   * its eigenvalues are non-negative (positive semidefinite)           
