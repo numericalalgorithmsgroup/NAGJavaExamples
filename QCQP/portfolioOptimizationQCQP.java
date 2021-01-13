@@ -21,6 +21,8 @@ import java.io.FileWriter;
 
 public class portfolioOptimizationQCQP {
 
+    public final static String dataFolder = "data";
+
     public static String dataFile = "data" + File.separator + "djia_close_price.csv";
 
     public static void main(String[] args) {
@@ -86,6 +88,8 @@ public class portfolioOptimizationQCQP {
                 relRtn[j][i] = (data[j + 1][i] - data[j][i]) / data[j][i];
             }
         }
+
+        printMatrixToFile(relRtn, "relRtn.d");
 
         // Mean return
         double[] r = new double[n];
@@ -153,16 +157,16 @@ public class portfolioOptimizationQCQP {
         double[] blx = new double[n];
         double[] bux = new double[n];
 
-        Arrays.fill(irowa, 1);    
+        Arrays.fill(irowa, 1);
         for (i = 0; i < n; i++) {
             icola[i] = i + 1;
-        }   
-        Arrays.fill(a, 1.0);    
+        }
+        Arrays.fill(a, 1.0);
         bl[0] = 1.0;
         bu[0] = 1.0;
 
         // Input for bound constraint: x >= 0
-        Arrays.fill(blx, 0.0); 
+        Arrays.fill(blx, 0.0);
         Arrays.fill(bux, 1.0e20);
 
         // Set step for mu
@@ -205,7 +209,8 @@ public class portfolioOptimizationQCQP {
             }
 
             idqc = -1;
-            e04rs.eval(handle, 0.0, nonZeroLength(invertSignR), idxr, invertSignR, nonZeroLength(q), irowq, icolq, q, idqc, ifail);
+            e04rs.eval(handle, 0.0, nonZeroLength(invertSignR), idxr, invertSignR, nonZeroLength(q), irowq, icolq, q,
+                    idqc, ifail);
 
             // Set linear constraint e'x = 1
             e04rj.eval(handle, bl.length, bl, bu, nonZeroLength(a), irowa, icola, a, 0, ifail);
@@ -242,6 +247,9 @@ public class portfolioOptimizationQCQP {
             e04rz.eval(handle, ifail);
             handle = e04rz.getHANDLE();
         }
+
+        printVectorToFile(toArray(abRisk), "abRisk.d");
+        printVectorToFile(toArray(abRtn), "abRtn.d");
 
         // Maximizing the Sharpe ratio
 
@@ -323,6 +331,8 @@ public class portfolioOptimizationQCQP {
         for (i = 0; i < srX.length; i++) {
             srX[i] = x[i] / x[n];
         }
+
+        printVectorToFile(new double[]{srRisk, srRtn}, "sr.d");
 
         // Portfolio optimization with tracking-error constraint
 
@@ -447,6 +457,10 @@ public class portfolioOptimizationQCQP {
             e04rz.eval(handle, ifail);
             handle = e04rz.getHANDLE();
         }
+
+        printVectorToFile(new double[]{bRisk, bRtn}, "b.d");
+        printVectorToFile(toArray(tevRisk), "tevRisk.d");
+        printVectorToFile(toArray(tevRtn), "tevRtn.d");
     }
 
     public static class MONIT extends E04PT.Abstract_E04PT_MONIT {
@@ -540,11 +554,35 @@ public class portfolioOptimizationQCQP {
         return cell;
     }
 
+    public static double[] toArray(ArrayList<Double> list) {
+        double[] t = new double[list.size()];
+        for (int i = 0; i < t.length; i++) {
+            t[i] = (double) list.get(i);
+        }
+        return t;
+    }
+
     public static void printVectorToFile(double[] a, String fileName) {
         try {
-            FileWriter writer = new FileWriter(new File(fileName));
+            FileWriter writer = new FileWriter(new File(dataFolder + File.separator + fileName));
             for (int i = 0; i < a.length; i++) {
                 writer.write(a[i] + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void printMatrixToFile(double[][] a, String fileName) {
+        try {
+            FileWriter writer = new FileWriter(new File(dataFolder + File.separator + fileName));
+            for (int i = 0; i < a.length; i++) {
+                for (int j = 0; j < a[0].length; j++) {
+                    writer.write(a[i][j] + " ");
+                }
+                writer.write("\n");
             }
             writer.close();
         } catch (IOException e) {
