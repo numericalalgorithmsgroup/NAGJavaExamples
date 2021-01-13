@@ -713,7 +713,9 @@ $$ X = \large \alpha T+(1-\alpha)G, \quad T = H \circ G, \quad h_{ij} \in [0,1] 
 
 * We do this until we converge on a matrix with both properties.
 
-<img src = "./alt_proj.png" width = "300px">
+<div style="text-align: center;">
+    <img src = "./alt_proj.png" width = "300px">
+</div>
 
 ## Alternating Projections with Anderson Acceleration
 
