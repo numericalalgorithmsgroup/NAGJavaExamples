@@ -36,7 +36,6 @@ public class NcmNag {
         double[][] G = cor_bar(P);
         System.out.println("The approximate correlation matrix");
         printMatrix(G);
-        printMatrixToFile(G, "G.d");
 
         System.out.println();
 
@@ -62,7 +61,6 @@ public class NcmNag {
 
         System.out.print("Sorted eigenvalues of G: ");
         printVector(wr);
-        printVectorToFile(wr, "G_eigen.d");
 
         System.out.println();
 
@@ -92,7 +90,6 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix");
         printMatrix(X);
-        printMatrixToFile(X, "X_G02AA.d");
 
         System.out.println();
 
@@ -114,7 +111,6 @@ public class NcmNag {
 
         System.out.print("Sorted eigenvalues of X: ");
         printVector(wr);
-        printVectorToFile(wr, "X_eigen_G02AA.d");
 
         System.out.println();
 
@@ -161,7 +157,6 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix using row and column weighting");
         printMatrix(X);
-        printMatrixToFile(X, "X_G02AB.d");
 
         System.out.println();
 
@@ -183,7 +178,6 @@ public class NcmNag {
 
         System.out.print("Sorted eigenvalues of X: ");
         printVector(wr);
-        printVectorToFile(wr, "X_eigen_G02AB.d");
 
         System.out.println();
 
@@ -216,7 +210,6 @@ public class NcmNag {
             }
         }
         printMatrix(H);
-        printMatrixToFile(H, "H_G02AJ.d");
 
         System.out.println();
 
@@ -242,7 +235,6 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix using element-wise weighting");
         printMatrix(X);
-        printMatrixToFile(X, "X_G02AJ.d");
 
         System.out.println();
 
@@ -264,7 +256,6 @@ public class NcmNag {
 
         System.out.print("Sorted eigenvalues of X: ");
         printVector(wr);
-        printVectorToFile(wr, "X_eigen_G02AJ.d");
 
         System.out.println();
 
@@ -307,7 +298,6 @@ public class NcmNag {
 
         System.out.println("Nearest correlation matrix with fixed leading block");
         printMatrix(X);
-        printMatrixToFile(X, "X_G02AN.d");
 
         System.out.println();
 
@@ -329,10 +319,8 @@ public class NcmNag {
 
         System.out.print("Sorted eigenvalues of X: ");
         printVector(wr);
-        printVectorToFile(wr, "X_eigen_G02AN.d");
 
         System.out.printf("Value of alpha returned: %.4f\n", alpha);
-        printVectorToFile(new double[]{alpha}, "alpha_G02AN.d");
 
         System.out.println();
 
@@ -346,7 +334,6 @@ public class NcmNag {
         X_G_norm = f06rc.eval(norm, uplo, n, X_G1d, lda, work);
 
         printDataToFile("G02AN.d", iter, X_G, X_G_norm);
-
     }
 
     /**
