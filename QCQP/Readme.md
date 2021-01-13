@@ -73,7 +73,9 @@ We consider daily prices for the 30 stocks in the DJIA from March 2018 to March 
     <img src="img/data.png">
 </div>
 
-For each stock $$i$$, we first estimate the $$j$$th daily relative return as $$relative~return_{i,j} = \frac{closing~price_{i,j+1}-closing~price_{i,j}}{closing~price_{i,j}}.$$
+For each stock $$i$$, we first estimate the $$j$$th daily relative return as
+
+$$relative~return_{i,j} = \frac{closing~price_{i,j+1}-closing~price_{i,j}}{closing~price_{i,j}}.$$
 
 ```java
         // Relative return
@@ -127,6 +129,7 @@ Simply take arithmetic mean of each column of relative return to get mean return
 ## Efficient Frontier
 
 One of the major goals of portfolio management is to achieve a certain level of return under a specific risk measurement. Here we demonstrate how to use NAG Library to build efficient frontier by solving classical Markowitz model with long-only constraint (meaning, buy to hold and short selling is not allowed):
+
 $$
 \begin{equation}\label{MV_model}
 \begin{array}{ll}
@@ -136,6 +139,7 @@ $$
 \end{array}
 \end{equation}
 $$
+
 where $$e\in\Re^n$$ is vector of all ones and $$\mu$$ is a scalar controling trade-off between return and risk. Note one could build the efficient frontier by varying $$\mu$$ from $$0$$ to a certain value.
 
 ```java
@@ -277,6 +281,7 @@ The input data is ready, we can easily build the efficient frontier as follows.
 ## Maximizing the Sharpe ratio
 
 The Sharpe ratio is defined as the ratio of return of portfolio and standard deviation of the portfolio's excess return. It is usually used to measure the efficiency of a portfolio. Find the most efficient portfolio is equivalent to solve the following optimization problem.
+
 $$
 \begin{equation}\label{sr_model}
 \begin{array}{ll}
@@ -285,7 +290,11 @@ $$
      & x\geq0.
 \end{array}
 \end{equation}
-By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model (\ref{sr_model}) is equivalent to
+$$
+
+By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model $$(\ref{sr_model})$$ is equivalent to
+
+$$
 \begin{equation}\label{sr_model_eq}
 \begin{array}{ll}
 \underset{y\in\Re^n, \lambda\in\Re}{\mbox{minimize}} & y^TVy\\[0.6ex]
@@ -296,7 +305,8 @@ By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model (\ref{sr_model
 \end{array}
 \end{equation}
 $$
-Problem (\ref{sr_model_eq}) is similar to problem (\ref{MV_model}) in the sense that they both have a quadratic objective function and linear constraints.
+
+Problem $$(\ref{sr_model_eq})$$ is similar to problem $$(\ref{MV_model})$$ in the sense that they both have a quadratic objective function and linear constraints.
 
 ```java
 // Input for linear constraint: e'y = lambda
@@ -395,7 +405,8 @@ Now we can call the NAG SOCP solver as follows.
 
 # Portfolio optimization with tracking-error constraint
 
-To avoid taking unnecessary risk when beating a benchmark, the investors commonly impose a limit on the volatility of the deviation of the active portfolio from the benchmark, which is also known as tracking-error volatility (TEV) \cite{J03}. The model to build efficient frontier in excess-return space is
+To avoid taking unnecessary risk when beating a benchmark, the investors commonly impose a limit on the volatility of the deviation of the active portfolio from the benchmark, which is also known as tracking-error volatility (TEV) $$\cite{J03}$$. The model to build efficient frontier in excess-return space is
+
 $$
 \begin{equation}\label{er_tev}
 \begin{array}{ll}
@@ -405,7 +416,9 @@ $$
 \end{array}
 \end{equation}
 $$
-where $$tev$$ is a limit on the track-error. Roll \cite{R92} noted that problem (\ref{er_tev}) is totally independent of the benchmark and leads to the unpalatable result that the active portfolio has systematically higher risk than the benchmark and is not optimal. Therefore, in this section we solve a more advanced model by taking absolute risk into account as follows.
+
+where $$tev$$ is a limit on the track-error. Roll $$\cite{R92}$$ noted that problem $$(\ref{er_tev})$$ is totally independent of the benchmark and leads to the unpalatable result that the active portfolio has systematically higher risk than the benchmark and is not optimal. Therefore, in this section we solve a more advanced model by taking absolute risk into account as follows.
+
 $$
 \begin{equation}\label{tev_model}
 \begin{array}{ll}
@@ -416,6 +429,7 @@ $$
 \end{array}
 \end{equation}
 $$
+
 where $$b$$ is a benchmark portfolio. In this demonstration, it is generated synthetically. Note here we use the same covariance matrix $$V$$ for tev and absolute risk measurement for demonstration purpose. In practice one could use different covariance matrices from different markets.
 
 ```java
@@ -558,7 +572,7 @@ where $$b$$ is a benchmark portfolio. In this demonstration, it is generated syn
 
 # Conclusion
 
-In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. \cite{DGNU09} discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation \cite{NAGDOC} on SOCP solver and \cite{AG03, LVBL98} for more details.
+In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. $$\cite{DGNU09}$$ discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation $$\cite{NAGDOC}$$ on SOCP solver and $$\cite{AG03, LVBL98}$$ for more details.
 
 # References
 
