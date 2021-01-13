@@ -332,6 +332,10 @@ public class portfolioOptimizationQCQP {
             srX[i] = x[i] / x[n];
         }
 
+        // Destroy the handle:
+        e04rz.eval(handle, ifail);
+        handle = e04rz.getHANDLE();
+        
         printVectorToFile(new double[]{srRisk, srRtn}, "sr.d");
 
         // Portfolio optimization with tracking-error constraint
