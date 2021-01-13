@@ -8,6 +8,7 @@ The source of this example can be found [here](https://github.com/numericalalgor
 # Introduction
 
 Quadratically constrained quadratic programming (QCQP) is a type of optimization problem in which both the objective function and the constraints involve quadratic functions. A general QCQP problem has the following form
+
 $$
 \begin{equation}
 \begin{array}{ll}
@@ -16,6 +17,7 @@ $$
 \end{array}
 \end{equation}
 $$
+
 It appears in applications such as modern portfolio theory, machine learning, engineering and control. Convex QCQP is usually handled through conic optimization, or, more precisely, second-order cone programming (SOCP) due to its computational efficiency and ability to detect infeasibility. However, using SOCP to solve convex QCQP is nontrivial task which requires extra amount of effort to transform problem data and add auxiliary variables. In this notebook, we are going to demonstrate how to use the *NAG Optimization Modelling Suite* in the NAG Library to define and solve QCQP in portfolio optimization.
 
 # Data Preparation
