@@ -475,7 +475,7 @@ Sorted eigenvalues of X:   0.0010   0.0010   0.0305   0.1646   0.6764   1.7716  
 $$ \Large \|H \circ(G-X) \|_F $$ 
 
 
-* So individually $$h_{ij} \times (g_{ij} \- x_{ij}).$$
+* So individually $$h_{ij} \times (g_{ij} - x_{ij}).$$
 
 
 * However, this is a more “difficult” problem, and more computationally expensive. 
