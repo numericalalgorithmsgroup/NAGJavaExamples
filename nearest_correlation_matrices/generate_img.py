@@ -8,11 +8,6 @@ np.set_printoptions(precision=4, suppress=True)
 # Set the data folder path
 data_folder = Path("data")
 
-def read_matrix_file(fname):
-    with open(data_folder / fname) as fdata:
-        a = np.array([line.split() for line in fdata], dtype = np.float64)
-    return a
-
 def read_data_file(fname):
     with open(data_folder / fname) as fdata:
         for i, line in enumerate(fdata):
