@@ -9,7 +9,7 @@ This repository contains examples and demonstrations using the [NAG Library for 
 ## Directory of GitHub examples
 
 * [Nearest Correlation Matrices](./nearest_correlation_matrices)
-* [Quadratically constrained quadratic programming and its applications in portfolio optimization]()
+* [Quadratically constrained quadratic programming and its applications in portfolio optimization](./QCQP)
 
 ## Examples that ship with the product
 
