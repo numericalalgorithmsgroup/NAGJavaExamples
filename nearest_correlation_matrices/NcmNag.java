@@ -14,7 +14,7 @@ import java.io.FileWriter;
 
 public class NcmNag {
 
-    public static String dataFolder = "data";
+    public final static String dataFolder = "data";
     public static void main(String[] args) {
 
         // Initialize our P matrix of observations
