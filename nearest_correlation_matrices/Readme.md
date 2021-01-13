@@ -1,7 +1,7 @@
-> ## Important Information
-> To properly read the documentation click [here](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/).
-
 # Nearest Correlation Matrices
+
+# Correct Rendering of this notebook
+This file has a lot of Latex and GitHub currently cannot render it on Markdown files. [Here](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/nearest_correlation_matrices/) you can read it clearly.
 
 This notebook looks at computing *nearest correlation matrices* using the NAG Library for *Java*.
 
