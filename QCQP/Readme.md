@@ -407,7 +407,7 @@ Now we can call the NAG SOCP solver as follows.
 
 # Portfolio optimization with tracking-error constraint
 
-To avoid taking unnecessary risk when beating a benchmark, the investors commonly impose a limit on the volatility of the deviation of the active portfolio from the benchmark, which is also known as tracking-error volatility (TEV) $$\cite{J03}$$. The model to build efficient frontier in excess-return space is
+To avoid taking unnecessary risk when beating a benchmark, the investors commonly impose a limit on the volatility of the deviation of the active portfolio from the benchmark, which is also known as tracking-error volatility (TEV) [[1](#cit-J03)]. The model to build efficient frontier in excess-return space is
 
 $$
 \begin{equation}\label{er_tev}
@@ -419,7 +419,7 @@ $$
 \end{equation}
 $$
 
-where $$tev$$ is a limit on the track-error. Roll $$\cite{R92}$$ noted that problem $$(\ref{er_tev})$$ is totally independent of the benchmark and leads to the unpalatable result that the active portfolio has systematically higher risk than the benchmark and is not optimal. Therefore, in this section we solve a more advanced model by taking absolute risk into account as follows.
+where $$tev$$ is a limit on the track-error. Roll [[2](#cit-R92)] noted that problem $$(\ref{er_tev})$$ is totally independent of the benchmark and leads to the unpalatable result that the active portfolio has systematically higher risk than the benchmark and is not optimal. Therefore, in this section we solve a more advanced model by taking absolute risk into account as follows.
 
 $$
 \begin{equation}\label{tev_model}
@@ -574,7 +574,7 @@ where $$b$$ is a benchmark portfolio. In this demonstration, it is generated syn
 
 # Conclusion
 
-In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. [3](#cit-DGNU09) discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation $$\cite{NAGDOC}$$ on SOCP solver and $$\cite{AG03, LVBL98}$$ for more details.
+In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. [[3](#cit-DGNU09)] discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation [[4](#cit-NAGDOC)] on SOCP solver and [[5](#cit-AG03), [6](#cit-LVBL98)] for more details.
 
 # References
 
