@@ -297,6 +297,7 @@ By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model $$(\ref{eq:sr_
 
 $$
 \begin{equation}
+\label{sr_model_eq}
 \begin{array}{ll}
 \underset{y\in\Re^n, \lambda\in\Re}{\mbox{minimize}} & y^TVy\\[0.6ex]
 \mbox{subject to} & e^Ty = \lambda,\\[0.6ex]
@@ -304,7 +305,6 @@ $$
      & y\geq0, \\
      & \lambda\geq0.
 \end{array}
-\label{sr_model_eq}
 \end{equation}
 $$
 
@@ -574,7 +574,7 @@ where $$b$$ is a benchmark portfolio. In this demonstration, it is generated syn
 
 # Conclusion
 
-In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. $$\cite{DGNU09}$$ discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation $$\cite{NAGDOC}$$ on SOCP solver and $$\cite{AG03, LVBL98}$$ for more details.
+In this notebook, we demonstrated how to use NAG Library to solve various quadratic models in portfolio optimization. Conic optimization is usually a good choice to solve convex QCQP. It is worth pointing out that the versatility of SOCP is not just limited to the QCQP models mentioned here. It covers a lot more problems and constraints. For example, DeMiguel et al. [3](#cit-DGNU09) discussed portfolio optimization with norm constraint, which can be easily transformed into an SOCP problem. We refer readers to the NAG Library documentation $$\cite{NAGDOC}$$ on SOCP solver and $$\cite{AG03, LVBL98}$$ for more details.
 
 # References
 
