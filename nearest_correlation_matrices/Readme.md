@@ -1,5 +1,5 @@
 > ## Important Information
-> This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/nearest_correlation_matrices).
+> This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/nearest_correlation_matrices) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/nearest_correlation_matrices).
 
 # Nearest Correlation Matrices
 
