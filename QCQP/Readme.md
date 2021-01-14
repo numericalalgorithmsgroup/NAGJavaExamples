@@ -1,5 +1,7 @@
 > ## Important Information
 > This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/QCQP) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/QCQP).
+>
+> See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
 # Quadratically constrained quadratic programming and its applications in portfolio optimization
 
