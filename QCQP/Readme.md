@@ -283,7 +283,7 @@ The input data is ready, we can easily build the efficient frontier as follows.
 The Sharpe ratio is defined as the ratio of return of portfolio and standard deviation of the portfolio's excess return. It is usually used to measure the efficiency of a portfolio. Find the most efficient portfolio is equivalent to solve the following optimization problem.
 
 $$
-\begin{equation}\label{sr_model}
+\begin{equation}\label{eq:sr_model}
 \begin{array}{ll}
 \underset{x\in\Re^n}{\mbox{minimize}} & \frac{\sqrt{x^TVx}}{r^Tx}\\[0.6ex]
 \mbox{subject to} & e^Tx = 1,\\[0.6ex]
@@ -292,7 +292,7 @@ $$
 \end{equation}
 $$
 
-By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model $$(\ref{sr_model})$$ is equivalent to
+By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model $$(\ref{eq:sr_model})$$ is equivalent to
 
 $$
 \begin{equation}\label{sr_model_eq}
