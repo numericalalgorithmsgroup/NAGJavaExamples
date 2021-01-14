@@ -291,13 +291,12 @@ $$
      & x\geq0.
 \end{array}
 \end{equation}
-(\ref{eq:sr_model})
 $$
 
 By replacing $$x$$ with $$\frac{y}{\lambda}, \lambda\gt0$$, model $$(\ref{eq:sr_model})$$ is equivalent to
 
 $$
-\begin{equation}\label{sr_model_eq}
+\begin{equation}
 \begin{array}{ll}
 \underset{y\in\Re^n, \lambda\in\Re}{\mbox{minimize}} & y^TVy\\[0.6ex]
 \mbox{subject to} & e^Ty = \lambda,\\[0.6ex]
@@ -305,6 +304,7 @@ $$
      & y\geq0, \\
      & \lambda\geq0.
 \end{array}
+\label{sr_model_eq}
 \end{equation}
 $$
 
