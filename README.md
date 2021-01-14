@@ -14,7 +14,7 @@ This repository contains examples and demonstrations using the [NAG Library for 
 
 ## Examples that ship with the product
 
-The NAG Library for Java ships with a set of usage [examples](./simple_examples).
+The NAG Library for Java ships with a set of usage [examples](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/simple_examples).
 
 ## Prerequisites
 
