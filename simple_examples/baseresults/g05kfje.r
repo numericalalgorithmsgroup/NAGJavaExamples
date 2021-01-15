@@ -1,7 +1,0 @@
-G05KFJ Example Program Results
-
-0.6364
-0.1065
-0.7460
-0.7983
-0.1046
