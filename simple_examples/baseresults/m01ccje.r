@@ -1,0 +1,15 @@
+ M01CCJ Example Program Results
+
+ Records sorted on columns  7 to 12
+
+ C05AZF  2181
+ C05AUF  1351
+ C02AEF   599
+ A02ACF   531
+ A02ABF   523
+ A02AAF   289
+ C05AVF   240
+ C05AXF   211
+ C05AYF   183
+ C02ADF   169
+ C05AWF   136
