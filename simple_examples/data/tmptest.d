@@ -1,3 +1,4 @@
+Dummy test file
 E04TCJ Example Program Data
 30                                                                        : nres
 -1.0000000000000000E+00  -9.3103448275862066E-01  -8.6206896551724133E-01
