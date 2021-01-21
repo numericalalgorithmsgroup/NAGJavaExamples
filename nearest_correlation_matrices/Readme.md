@@ -1,13 +1,13 @@
 > ## Important Information
-> This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/nearest_correlation_matrices) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/nearest_correlation_matrices).
+> This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/nearest_correlation_matrices) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/nearest_correlation_matrices).
+>
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/NcmNag.java).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
 # Nearest Correlation Matrices
 
 This notebook looks at computing *nearest correlation matrices* using the NAG Library for *Java*.
-
-The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/NcmNag.java).
 
 ## Correlation Matrices
 
