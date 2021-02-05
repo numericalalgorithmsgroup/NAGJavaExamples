@@ -1,6 +1,4 @@
 > ## Important Information
-> This repository is still under development.
->
 > This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/).
 
 # Examples using the NAG Library for Java
