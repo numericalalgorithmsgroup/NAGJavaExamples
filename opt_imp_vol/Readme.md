@@ -1,7 +1,7 @@
 > ## Important Information
 > This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/opt_imp_vol) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/opt_imp_vol).
 >
-> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/opt_imp_vol/impVolDemo.java).
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/opt_imp_vol/impVolDemo.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/opt_imp_vol/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
