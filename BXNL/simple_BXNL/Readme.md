@@ -1,6 +1,7 @@
 > ## Important Information
-> You can view this page as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/opt_imp_vol) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/opt_imp_vol).
+> This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/BXNL/simple_BXNL) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/BXNL/simple_BXNL).
 >
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/NcmNag.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
@@ -25,7 +26,10 @@ The following example illustrates the usage of `e04gg` to fit PADC target with $
 etched nuclear track data to a convoluted distribution. A target
 sheet is scanned and track diameters (red wedges in
 the following Figure 1) are recorded into a histogram and a mixed Normal and log-Normal model is to be fitted to the experimental histogram (see Figure 2).
-![PADC](../images/tracks.png)
+
+<div style="text-align: center;">
+    <img src="img/tracks.png" alt="PADC">
+</div>
 
 **Figure 1**: PADC with etched $$\alpha$$ particle tracks.
 
