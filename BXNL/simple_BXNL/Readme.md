@@ -28,7 +28,7 @@ sheet is scanned and track diameters (red wedges in
 the following Figure 1) are recorded into a histogram and a mixed Normal and log-Normal model is to be fitted to the experimental histogram (see Figure 2).
 
 <div style="text-align: center;">
-    <img src="img/tracks.png" alt="PADC">
+    <img src="../images/tracks.png" alt="PADC">
 </div>
 
 **Figure 1**: PADC with etched $$\alpha$$ particle tracks.
