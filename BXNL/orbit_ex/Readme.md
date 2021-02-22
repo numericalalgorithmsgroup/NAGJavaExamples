@@ -1,7 +1,7 @@
 > ## Important Information
-> This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/opt_imp_vol) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/opt_imp_vol).
+> You can view this page as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/BXNL/orbit_ex) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/BXNL/orbit_ex).
 >
-> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/opt_imp_vol/impVolDemo.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/opt_imp_vol/output.txt).
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/BXNL/orbit_ex/source/OrbitEx.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/BXNL/orbit_ex/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
@@ -23,7 +23,7 @@ Example of a nonlinear least-square orbital data fitting. Given a set of orbital
 <br/>
 
 <div style="text-align: center;">
-    <img src="img/dat_orbit.png">
+    <img src="img/dat_orbit.png" width="50%">
 </div>
 
 Image credit: [Image of Earth](https://pics.eumetsat.int/viewer/index.html) was taken from [EUMETSAT, Copyright 2020](https://pics.eumetsat.int/viewer/index.html#help).
@@ -32,7 +32,9 @@ Image credit: [Image of Earth](https://pics.eumetsat.int/viewer/index.html) was 
 The previous image shows the orbit measurements to which an optimal orbit, `r`, must be estimated. 
 The simple univariate problem to solve is:
 
-![LaTeX equation: min f(x) = sum i=1 to nres of (tr[i]^2 - r^2)^2](img/ltx_optprb.png)
+<div style="text-align: center;">
+    <img src="img/ltx_optprb.png" alt="LaTeX equation: min f(x) = sum i=1 to nres of (tr[i]^2 - r^2)^2">
+</div>
 
 Here `tr[i]` contains the squared norm for the measurement point `i`, given by the coordinate pair `(tx[i], ty[i])`. Note that the coordinates for the center of the planet are provided by the vector `cc`.
 
@@ -49,6 +51,7 @@ Here `tr[i]` contains the squared norm for the measurement point `i`, given by t
 <br/>
 
 ```java
+    // Define the least-square function and add first derivatives.
     /**
      * Objective function call back passed to the least squares solver. Return the
      * difference between the current estimated radius squared, r^2=x^2 and the
@@ -161,7 +164,7 @@ Call the solver
 <br/>
 
 <div style="text-align: center;">
-    <img src="img/est_orbit.png">
+    <img src="img/est_orbit.png" width="50%">
 </div>
 
 Suppose expert knowledge provides insight on the reliability of each measurement and that for this satellite configuration, operational orbit height should be around 250 +/-6 units. The previous image shows a fit where each measurement (data point) contributes the same amount and provides an optimal orbit height of 238.76 units. The fit is quite poor in the sense that it does not satisfy expert advice. Evidently data point 0 (yellow cross closest to Earth surface) is unreliable. Unreliability should be taken into account while doing the fitting. For this end, weights for each residuals are introduced (weights should be set to be proportional to the inverse of their variability). For this example, suppose we are provided with the accuracy for each of the data measurements. 
@@ -216,7 +219,7 @@ Optimal Orbit Height: 254.90
 <br/>
 
 <div style="text-align: center;">
-    <img src="img/estw_orbit.png">
+    <img src="img/estw_orbit.png" width="50%">
 </div>
 
 

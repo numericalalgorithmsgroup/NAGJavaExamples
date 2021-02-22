@@ -203,6 +203,7 @@ public class OrbitEx {
         e04rz.eval(handle, ifail);
     }
 
+    // Define the least-square function and add first derivatives.
     /**
      * Objective function call back passed to the least squares solver. Return the
      * difference between the current estimated radius squared, r^2=x^2 and the
