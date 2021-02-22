@@ -10,6 +10,7 @@ This repository contains examples and demonstrations using the [NAG Library for 
 * [Nearest Correlation Matrices](./nearest_correlation_matrices)
 * [Quadratically constrained quadratic programming and its applications in portfolio optimization](./QCQP)
 * [Fast Implied Volatilities](./opt_imp_vol)
+* [Nonlinear Least-Squares Trust-Region Method (BXNL)](./BXNL)
 
 ## Examples that ship with the product
 
