@@ -8,7 +8,7 @@
 
 # Nonlinear Least-Squares Trust-Region Method (BXNL)
 
-[[`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html) | [`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html) | [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl)]
+[[`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html), [`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html), [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl)]
 
 Data fitting and calibrating parameters of complex numerical models is one of the most common
 problems found in numerous industries such as  physics, space exploration, simulations, engineering, amongs many others. 
@@ -19,14 +19,19 @@ and is also part of the [NAG Optimization Modelling Suite](https://www.nag.co.uk
 
 Figure 1 shows an illustrative simple problem of data fitting ([more details](./orbit_ex/Readme.md)). The task is to find the optimal orbit path given a variety of measurements for which the orbit has to approximatly pass-by.
 
-<div>
+<!-- <div>
   <div style="float:left;">
     <img src="./images/est_orbit.png" width="50%" alt="Optimal orbit from data orbit measurements."/>
   </div>
   <div style="float:left;">
     <img src="./images/estw_orbit.png" width="50%" alt="Weighted optimal orbit from data orbit measurements."/>
   </div>
-</div>
+</div> -->
+
+<figure style="display:flex;">
+  <img src="./images/est_orbit.png" width="50%" alt="Optimal orbit from data orbit measurements."/>
+  <img src="./images/estw_orbit.png" width="50%" alt="Weighted optimal orbit from data orbit measurements."/>
+</figure>
 
 **Figure 1.** Example of a NLLS orbital data fitting.
  Given a set of 7 orbital data points the task is to estimate an optimal orbit path that minimizes the error between the path and the fixed data points. For this example assume that expert knowledge provides insight on the reliability of each measument and that for this satellite configuration operational orbit height should around 250 +/-3 units. Center plot shows a simple fit where each measurement (data point) contributes the same amount and provides an optimal orbit height of 238.76 units. The fit is quite poor in the sense that it does not satisfy expert advice. Evidently data point 0 (yellow cross closest to earch surface) unreliablity should be taken into account while doing the fitting. Weights for the residuals should be proportional to the inverse of their variability. For this example suppose we are provided with the accuracy for each of the data measurements, this can be factored using weighted nonlinear least-squares. The rightmost plot shows the weighted optimal solution with orbit height of 254.90 units wich is withing the suggested tolerance. Image credit: [Image of Earth](https://pics.eumetsat.int/viewer/index.html) was taken from [EUMETSAT, Copyright 2020](https://pics.eumetsat.int/viewer/index.html#help).
