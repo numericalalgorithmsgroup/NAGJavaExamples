@@ -19,18 +19,9 @@ and is also part of the [NAG Optimization Modelling Suite](https://www.nag.co.uk
 
 Figure 1 shows an illustrative simple problem of data fitting ([more details](./orbit_ex/Readme.md)). The task is to find the optimal orbit path given a variety of measurements for which the orbit has to approximatly pass-by.
 
-<!-- <div>
-  <div style="float:left;">
-    <img src="./images/est_orbit.png" width="50%" alt="Optimal orbit from data orbit measurements."/>
-  </div>
-  <div style="float:left;">
-    <img src="./images/estw_orbit.png" width="50%" alt="Weighted optimal orbit from data orbit measurements."/>
-  </div>
-</div> -->
-
 <figure style="display:flex;">
-  <img src="./images/est_orbit.png" width="50%" alt="Optimal orbit from data orbit measurements."/>
-  <img src="./images/estw_orbit.png" width="50%" alt="Weighted optimal orbit from data orbit measurements."/>
+  <img src="./images/est_orbit.png" alt="Optimal orbit from data orbit measurements."/>
+  <img src="./images/estw_orbit.png" alt="Weighted optimal orbit from data orbit measurements."/>
 </figure>
 
 **Figure 1.** Example of a NLLS orbital data fitting.
@@ -59,14 +50,10 @@ using as data the histogram heights. The NLLS solution provides the unfolded
 parameters for the two distributions (red and blue curves in right plot in Figure 2). 
 Adding these together produces the green curve which is the one used to perform the fitting with.
 
-<div>
-  <div style="float:left;">
-    <img src="./images/tracks.png" width="50%" alt="PADC etch track diameter histogram unfolding"/>
-  </div>
-  <div style="float:left;">
-    <img src="./images/fig-unfolding.png" width="50%" alt="Experimental histogram of track diameter"/>
-  </div>
-</div>
+<figure style="display:flex;">
+  <img src="./images/tracks.png" alt="PADC etch track diameter histogram unfolding"/>
+  <img src="./images/fig-unfolding.png" alt="Experimental histogram of track diameter"/>
+</figure>
 
 **Figure 2.** Left: example of a PADC target with alpha 
 particle etched tracks, wedges in red show the track diameter. 
@@ -90,17 +77,11 @@ should present significant improvement for unconstrained or bound-constrained no
 least-squares solvers in the NAG Library and current users of [`e04gb`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04gbf.html) 
 are highly encourage to try out the new solver.
 
-<div>
-  <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="33%" alt="Performance Profile (time:seconds)"/>
-  </div>
-  <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NF.png" width="33%" alt="Performance Profile (number of function calls)"/>
-  </div>
-  <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NG.png" width="33%" alt="Performance Profile (number of gradient calls)"/>
-  </div>
-</div>
+<figure style="display:flex;">
+  <img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="33%" alt="Performance Profile (time:seconds)"/>
+  <img src="./images/b-ral_sif-e04gg-e04gb-NF.png" alt="Performance Profile (number of function calls)"/>
+  <img src="./images/b-ral_sif-e04gg-e04gb-NG.png" alt="Performance Profile (number of gradient calls)"/>
+</figure>
 
 **Figure 3.** Performance profiles comparing solvers e04gg and e04gb over 68 CUTEst unconstrained nonlinear least-squares problems.
 Performance measure are: time in seconds (left), number of function calls (center) and number of gradient calls
