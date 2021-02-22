@@ -51,7 +51,7 @@ parameters for the two distributions (red and blue curves in right plot in Figur
 Adding these together produces the green curve which is the one used to perform the fitting with.
 
 <figure style="display:flex;">
-  <img src="./images/tracks.png" height="100%" width="50%" alt="PADC etch track diameter histogram unfolding"/>
+  <img src="./images/tracks.png" valign="middle;" height="100%" width="50%" alt="PADC etch track diameter histogram unfolding"/>
   <img src="./images/fig-unfolding.png" width="50%" alt="Experimental histogram of track diameter"/>
 </figure>
 
