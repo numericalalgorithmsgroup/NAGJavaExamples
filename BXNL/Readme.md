@@ -8,7 +8,7 @@
 
 # Nonlinear Least-Squares Trust-Region Method (BXNL)
 
-[ [`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html) | [`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html) | [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl) ]
+[[`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html) | [`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html) | [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl)]
 
 Data fitting and calibrating parameters of complex numerical models is one of the most common
 problems found in numerous industries such as  physics, space exploration, simulations, engineering, amongs many others. 
@@ -21,10 +21,10 @@ Figure 1 shows an illustrative simple problem of data fitting ([more details](./
 
 <div>
   <div style="float:left;">
-    <img src="./images/est_orbit.png" width="100%" alt="Optimal orbit from data orbit measurements."/>
+    <img src="./images/est_orbit.png" width="50%" alt="Optimal orbit from data orbit measurements."/>
   </div>
   <div style="float:left;">
-    <img src="./images/estw_orbit.png" width="100%" alt="Weighted optimal orbit from data orbit measurements."/>
+    <img src="./images/estw_orbit.png" width="50%" alt="Weighted optimal orbit from data orbit measurements."/>
   </div>
 </div>
 
@@ -56,10 +56,10 @@ Adding these together produces the green curve which is the one used to perform 
 
 <div>
   <div style="float:left;">
-    <img src="./images/tracks.png" width="100%" alt="PADC etch track diameter histogram unfolding"/>
+    <img src="./images/tracks.png" width="50%" alt="PADC etch track diameter histogram unfolding"/>
   </div>
   <div style="float:left;">
-    <img src="./images/fig-unfolding.png" width="100%" alt="Experimental histogram of track diameter"/>
+    <img src="./images/fig-unfolding.png" width="50%" alt="Experimental histogram of track diameter"/>
   </div>
 </div>
 
@@ -87,13 +87,13 @@ are highly encourage to try out the new solver.
 
 <div>
   <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="100%" alt="Performance Profile (time:seconds)"/>
+    <img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="33%" alt="Performance Profile (time:seconds)"/>
   </div>
   <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NF.png" width="100%" alt="Performance Profile (number of function calls)"/>
+    <img src="./images/b-ral_sif-e04gg-e04gb-NF.png" width="33%" alt="Performance Profile (number of function calls)"/>
   </div>
   <div style="float:left;">
-    <img src="./images/b-ral_sif-e04gg-e04gb-NG.png" width="100%" alt="Performance Profile (number of gradient calls)"/>
+    <img src="./images/b-ral_sif-e04gg-e04gb-NG.png" width="33%" alt="Performance Profile (number of gradient calls)"/>
   </div>
 </div>
 
