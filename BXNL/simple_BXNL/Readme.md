@@ -1,7 +1,7 @@
 > ## Important Information
 > This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/BXNL/simple_BXNL) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/BXNL/simple_BXNL).
 >
-> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/NcmNag.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/nearest_correlation_matrices/output.txt).
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/BXNL/simple_BXNL/source/SimpleBXNL.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/BXNL/simple_BXNL/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
