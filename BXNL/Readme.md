@@ -8,8 +8,7 @@
 
 # Nonlinear Least-Squares Trust-Region Method (BXNL)
 
-[ [`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html) | 
-[`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html) | [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl) ]
+[ [`e04ggf`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html) | [`e04ggc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html) | [`handle_solve_bxnl`](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.opt.handle_solve_bxnl) ]
 
 Data fitting and calibrating parameters of complex numerical models is one of the most common
 problems found in numerous industries such as  physics, space exploration, simulations, engineering, amongs many others. 
@@ -20,12 +19,14 @@ and is also part of the [NAG Optimization Modelling Suite](https://www.nag.co.uk
 
 Figure 1 shows an illustrative simple problem of data fitting ([more details](./orbit_ex/Readme.md)). The task is to find the optimal orbit path given a variety of measurements for which the orbit has to approximatly pass-by.
 
-<table>
-  <tr>
- <td width=50%><img src="./images/est_orbit.png" width="100%" alt="Optimal orbit from data orbit measurements."/>
- <td width=50%><img src="./images/estw_orbit.png" width="100%" alt="Weighted optimal orbit from data orbit measurements."/></td>
-</tr>
-</table>
+<div>
+  <div style="float:left;">
+    <img src="./images/est_orbit.png" width="100%" alt="Optimal orbit from data orbit measurements."/>
+  </div>
+  <div style="float:left;">
+    <img src="./images/estw_orbit.png" width="100%" alt="Weighted optimal orbit from data orbit measurements."/>
+  </div>
+</div>
 
 **Figure 1.** Example of a NLLS orbital data fitting.
  Given a set of 7 orbital data points the task is to estimate an optimal orbit path that minimizes the error between the path and the fixed data points. For this example assume that expert knowledge provides insight on the reliability of each measument and that for this satellite configuration operational orbit height should around 250 +/-3 units. Center plot shows a simple fit where each measurement (data point) contributes the same amount and provides an optimal orbit height of 238.76 units. The fit is quite poor in the sense that it does not satisfy expert advice. Evidently data point 0 (yellow cross closest to earch surface) unreliablity should be taken into account while doing the fitting. Weights for the residuals should be proportional to the inverse of their variability. For this example suppose we are provided with the accuracy for each of the data measurements, this can be factored using weighted nonlinear least-squares. The rightmost plot shows the weighted optimal solution with orbit height of 254.90 units wich is withing the suggested tolerance. Image credit: [Image of Earth](https://pics.eumetsat.int/viewer/index.html) was taken from [EUMETSAT, Copyright 2020](https://pics.eumetsat.int/viewer/index.html#help).
@@ -34,7 +35,7 @@ Figure 1 shows an illustrative simple problem of data fitting ([more details](./
 # More Info
  1. [BXNL information leaflet](https://www.nag.com/content/faster-data-fitting-solver)
  2. [BXNL in the NAG Library for Java](https://www.nag.com/numeric/nl/nagdoc_27.1/flhtml/e04/e04ggf.html)
- 3. Examples [[Java example](../simple_examples/source/int32/E04GGJE.java), [C example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html#example), [Fortran example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html#example), [Python example](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.examples.opt.handle_disable_ex.main)]
+ 3. Examples [[Java example](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/simple_examples/source/int32/E04GGJE.java), [C example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html#example), [Fortran example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html#example), [Python example](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.examples.opt.handle_disable_ex.main)]
  
  # Unfolding Nuclear Track Data
  
@@ -53,12 +54,14 @@ using as data the histogram heights. The NLLS solution provides the unfolded
 parameters for the two distributions (red and blue curves in right plot in Figure 2). 
 Adding these together produces the green curve which is the one used to perform the fitting with.
 
-<table>
-<tr>
-<td valign="middle" width=50% ><img src="./images/tracks.png" width="100%" alt="PADC etch track diameter histogram unfolding"/></td>
-<td width=50%><img src="./images/fig-unfolding.png" width="100%" alt="Experimental histogram of track diameter"/></td>
-</tr>
-</table>
+<div>
+  <div style="float:left;">
+    <img src="./images/tracks.png" width="100%" alt="PADC etch track diameter histogram unfolding"/>
+  </div>
+  <div style="float:left;">
+    <img src="./images/fig-unfolding.png" width="100%" alt="Experimental histogram of track diameter"/>
+  </div>
+</div>
 
 **Figure 2.** Left: example of a PADC target with alpha 
 particle etched tracks, wedges in red show the track diameter. 
@@ -82,13 +85,17 @@ should present significant improvement for unconstrained or bound-constrained no
 least-squares solvers in the NAG Library and current users of [`e04gb`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04gbf.html) 
 are highly encourage to try out the new solver.
 
-<table>
-  <tr>
- <td width=30%><img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="100%" alt="Performance Profile (time:seconds)"/>
- <td width=30%><img src="./images/b-ral_sif-e04gg-e04gb-NF.png" width="100%" alt="Performance Profile (number of function calls)"/>
- <td width=30%><img src="./images/b-ral_sif-e04gg-e04gb-NG.png" width="100%" alt="Performance Profile (number of gradient calls)"/>
-</tr>
-</table>
+<div>
+  <div style="float:left;">
+    <img src="./images/b-ral_sif-e04gg-e04gb-NT.png" width="100%" alt="Performance Profile (time:seconds)"/>
+  </div>
+  <div style="float:left;">
+    <img src="./images/b-ral_sif-e04gg-e04gb-NF.png" width="100%" alt="Performance Profile (number of function calls)"/>
+  </div>
+  <div style="float:left;">
+    <img src="./images/b-ral_sif-e04gg-e04gb-NG.png" width="100%" alt="Performance Profile (number of gradient calls)"/>
+  </div>
+</div>
 
 **Figure 3.** Performance profiles comparing solvers e04gg and e04gb over 68 CUTEst unconstrained nonlinear least-squares problems.
 Performance measure are: time in seconds (left), number of function calls (center) and number of gradient calls

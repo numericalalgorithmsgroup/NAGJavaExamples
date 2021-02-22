@@ -68,7 +68,7 @@ using the histogram heights reported in Figure 2.
     <img src="img/fig2.png">
 </div>
 
-**Figure 2**: Histogram of etched track diameter of $\alpha$ particles. Bar heights are the data that will be fitted unsing the aggregated model $\phi(x, t)$. 
+**Figure 2**: Histogram of etched track diameter of $$\alpha$$ particles. Bar heights are the data that will be fitted unsing the aggregated model $$\phi(x, t)$$. 
 
 ```java
     // Define Normal and log-Normal distributions
@@ -97,9 +97,9 @@ using the histogram heights reported in Figure 2.
     }
 ```
 
-In terms of solving this problem, the function to minimize is the sum of residuals using the model $\phi(x;t)$
-and the data pair (`diameter`, `density`). The parameter vector is $x = (a, b, A_l, \mu, \sigma, A_g)$. The next step is to define a function to return the residual vector 
-$\text{lsqfun}(x) := \big[r_1(x), r_2(x), \dots, r_{n_{\text{res}}}(x)\big]$.
+In terms of solving this problem, the function to minimize is the sum of residuals using the model $$\phi(x;t)$$
+and the data pair (`diameter`, `density`). The parameter vector is $$x = (a, b, A_l, \mu, \sigma, A_g)$$. The next step is to define a function to return the residual vector 
+$$\text{lsqfun}(x) := \big[r_1(x), r_2(x), \dots, r_{n_{\text{res}}}(x)\big]$$.
 
 ```java
     // Define the least-square function as a mixture of Normal and log-Normal
@@ -262,7 +262,7 @@ Call the solver
      6   0.00000E+00    3.36877E-01    1.00000E+02 
 ```
 
-The optimal solution $x$ provides the unfolded parameters for the two distributions, Normal and log-Normal (blue and red curves in Figure 4). Adding these together produces the aggragated curve (shown in color green of Figure 3 and 4) this last one is the one used to perform the fitting with. The optimal solution is
+The optimal solution $$x$$ provides the unfolded parameters for the two distributions, Normal and log-Normal (blue and red curves in Figure 4). Adding these together produces the aggragated curve (shown in color green of Figure 3 and 4) this last one is the one used to perform the fitting with. The optimal solution is
 
 ```java
     // Optimal parameter values
