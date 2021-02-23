@@ -32,10 +32,8 @@ Figure 1 shows an illustrative simple problem of data fitting ([more details](./
  1. [BXNL information leaflet](https://www.nag.com/content/faster-data-fitting-solver)
  2. [BXNL in the NAG Library for Java](https://www.nag.com/numeric/nl/nagdoc_27.1/flhtml/e04/e04ggf.html)
  3. Examples [[Java example](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/blob/main/simple_examples/source/int32/E04GGJE.java), [C example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04ggc.html#example), [Fortran example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04ggf.html#example), [Python example](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.examples.opt.handle_disable_ex.main)]
- 
- <br/>
 
- # Unfolding Nuclear Track Data
+ <h1>Unfolding Nuclear Track Data</h1>
  
  [[More details for this example](./simple_BXNL/Readme.md)]
 
