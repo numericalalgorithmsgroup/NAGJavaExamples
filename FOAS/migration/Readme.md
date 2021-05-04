@@ -1,11 +1,11 @@
 > ## Important Information
 > You can view this page as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/FOAS/migration) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration).
 >
-> The source of this example can be found [here](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/FOAS/migration/Migration_E04DG_E04KF.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration/output.txt).
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration/Migration_E04DG_E04KF.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
-# Migrating from `E04DG` to `E04KF`
+# Migrating from E04DG to E04KF
 
 This page illustrates the steps required to upgrade from the solver `uncon_conjgrd_comp` (`E04DG`) to `handle_solve_bounds_foas` (`E04KF`) introduced at Mark 27 of the NAG Library.
 
@@ -71,7 +71,7 @@ public static class MONIT_E04KF extends E04KF.Abstract_E04KF_MONIT {
 double[] x = new double[] { -1.5, 1.9 };
 ```
 
-## Solve the problem with `E04DG`
+## Solve the problem with E04DG
 
 ```java
 E04WB e04wb = new E04WB();
@@ -105,7 +105,7 @@ e04dg.eval(n, objfun_e04dg, iter, objf, objgrd, x, iwork, work, iuser, ruser, lw
 Solution: 1.0000067567705557 1.0000135365609837
 ```
 
-## Now solve with the new solver `E04KF`
+## Now solve with the new solver E04KF
 
 ```java
 // Now solve with the new solver E04KF
