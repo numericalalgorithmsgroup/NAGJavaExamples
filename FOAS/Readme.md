@@ -53,7 +53,7 @@ Notes and comments on migrating your code from [`uncon_conjgrd_comp (e04dg)`](ht
 [`e04kfc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04kfc.html)):
 
 
- * [Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration/Migration_E04DG_E04KF.java)
+ * [Java](./migration)
  * [Fortran 90](https://www.nag.com/numeric/nl/nagdoc_latest/flhtml/genint/replace.html#e04dgf)
  * [C](https://www.nag.com/numeric/nl/nagdoc_latest/clhtml/genint/replace.html#e04dgc)
  * [Python](https://github.com/numericalalgorithmsgroup/NAGPythonExamples/blob/master/local_optimization/FOAS/migration/migration_e04dg_e04kf.ipynb)
