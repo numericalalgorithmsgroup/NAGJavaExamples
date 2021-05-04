@@ -16,7 +16,7 @@ FOAS is a [first-order nonlinear conjugate method](https://en.wikipedia.org/wiki
 
 e04kf is also part of the [NAG Optimization Modelling Suite](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04intro.html#optsuite) common handle interface. It offers clarity and consistency of the interface of the solvers within the suite, making it trivial to switch among compatible solvers.
 
-The following example illustrates the simple usage of FOAS to solve the bound-constrained 2D version of the [Rosenbrock function](https://en.wikipedia.org/wiki/Rosenbrock_function) which is a classical test function to measure and profile performance of solvers. Source of this example is avaible in [Rosenbrock2d.java](example/Rosenbrock2d.java).
+The following example illustrates the simple usage of FOAS to solve the bound-constrained 2D version of the [Rosenbrock function](https://en.wikipedia.org/wiki/Rosenbrock_function) which is a classical test function to measure and profile performance of solvers. Source of this example is avaible in [Rosenbrock2d.java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/example/Rosenbrock2d.java). It is also adviced to read this [page](./example) that explains the example.
 
 <figure style="display:flex;">
   <img src="./images/Rosenbrock2dw.png" width="50%" alt="2D Rosenbrock example"/>
@@ -34,7 +34,7 @@ The following example illustrates the simple usage of FOAS to solve the bound-co
  [Fortran example](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04kff.html#example) |
  [Python example](https://www.nag.co.uk/numeric/py/nagdoc_latest/naginterfaces.library.opt.html#naginterfaces.library.examples.opt.handle_solve_bounds_foas_ex.main) ]
 
-## A modern replacement for NAG solver [`uncon_conjgrd_comp` (`e04dg`)](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04dgf.html)
+## A modern replacement for NAG solver [uncon_conjgrd_comp (e04dg)](https://www.nag.co.uk/numeric/nl/nagdoc_latest/flhtml/e04/e04dgf.html)
 One of the main design objectives for `handle_solve_bounds_foas` (`e04kf`) was to provide a modern and attractive replacement for the CG solver `e04dg` introduced in Mark 12. While this solver was targeted for unconstrained NLPs, `e04kf` has been extended with an active-set method in order to solve bound-constrained NLPs.
 
 More recent and modern methods have been incorporated into `e04kf` making it much faster than `e04dg`. The following Figure 2 reports performance profiles over 114 unconstrained NLP CUTEst problems for both solvers `e04kf` and `e04dg`. Contrasting the three plots, it is evident that the new solver is more efficient in time (40% faster) and in general terms is less expensive: requires less function and gradient evaluations.
@@ -53,7 +53,7 @@ Notes and comments on migrating your code from [`uncon_conjgrd_comp (e04dg)`](ht
 [`e04kfc`](https://www.nag.co.uk/numeric/nl/nagdoc_latest/clhtml/e04/e04kfc.html)):
 
 
- * [Java](./migration/Migration_E04DG_E04KF.java)
+ * [Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/migration/Migration_E04DG_E04KF.java)
  * [Fortran 90](https://www.nag.com/numeric/nl/nagdoc_latest/flhtml/genint/replace.html#e04dgf)
  * [C](https://www.nag.com/numeric/nl/nagdoc_latest/clhtml/genint/replace.html#e04dgc)
  * [Python](https://github.com/numericalalgorithmsgroup/NAGPythonExamples/blob/master/local_optimization/FOAS/migration/migration_e04dg_e04kf.ipynb)
