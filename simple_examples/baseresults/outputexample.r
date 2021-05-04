@@ -3,7 +3,7 @@
  Implementation title: Linux, 64-bit, Intel C/C++ or Intel Fortran                                                                  
             Precision: double precision                                                                                             
          Product Code: NLL6I27DBL                                                                                                   
-                 Mark: 27.2.0 (self-contained)                                                                                      
+                 Mark: 27.3.0 (self-contained)                                                                                      
                                                                                                                                     
   This is a 64-bit library using 32-bit integers.                                                                                   
                                                                                                                                     
