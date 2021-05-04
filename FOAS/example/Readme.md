@@ -1,7 +1,7 @@
 > ## Important Information
 > You can view this page as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/FOAS/example) or access this as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/example).
 >
-> The source of this example can be found [here](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/FOAS/example/Rosenbrock2d.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/example/output.txt).
+> The source of this example can be found [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/example/Rosenbrock2d.java) and the output [here](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/FOAS/example/output.txt).
 >
 > See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
@@ -107,7 +107,7 @@ steps[1].add(x[1]);
 steps[2].add(rinfo[0]);
 ```
 
-</br>
+<br/>
 
 ```                                                                             
  ----------------------------------------------------------                     
@@ -234,7 +234,7 @@ for (int i = 0; i < mult.length; i += 2) {
 }
 ```
 
-</br>
+<br/>
 
 ```
 Lagrange multipliers: [ -0.4 0.0 ]

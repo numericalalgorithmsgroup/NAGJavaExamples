@@ -30,7 +30,7 @@ public static class OBJFUN_E04DG extends E04DG.Abstract_E04DG_OBJFUN {
 }
 ```
 
-</br>
+<br/>
 
 ```java
 // Define user call-backs for E04KF
@@ -64,7 +64,7 @@ public static class MONIT_E04KF extends E04KF.Abstract_E04KF_MONIT {
 }
 ```
 
-</br>
+<br/>
 
 ```java
 // The initial guess
@@ -99,7 +99,7 @@ ifail = 0;
 e04dg.eval(n, objfun_e04dg, iter, objf, objgrd, x, iwork, work, iuser, ruser, lwsav, iwsav, rwsav, ifail);
 ```
 
-</br>
+<br/>
 
 ```
 Solution: 1.0000067567705557 1.0000135365609837
@@ -158,7 +158,7 @@ E04RZ e04rz = new E04RZ();
 e04rz.eval(handle, ifail);
 ```
 
-</br>
+<br/>
 
 ```
 E04KF, First order method for bound-constrained problems                       
