@@ -11,6 +11,7 @@ This repository contains examples and demonstrations using the [NAG Library for 
 * [Quadratically constrained quadratic programming and its applications in portfolio optimization](./QCQP)
 * [Fast Implied Volatilities](./opt_imp_vol)
 * [Nonlinear Least-Squares Trust-Region Method (BXNL)](./BXNL)
+* [First-order active-set method (FOAS)](./FOAS)
 
 ## Examples that ship with the product
 
