@@ -1,9 +1,7 @@
 > ## Important Information
-> This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](URL-PLACEHOLDER) or access this as a regular github [repository](URL-PLACEHOLDER).
+> This file has a lot of Latex and GitHub currently cannot render it on Markdown files. You can read all the math clearly as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/NLDF/) or access this as a regular github [repository](https://github.com/caleb-hamilton/NAGJavaExamples/tree/main/NLDF).
 >
-> The source of this example can be found [here](URL-PLACEHOLDER) and the output [here](URL-PLACEHOLDER).
->
-> See the top directory of this repository for instructions to set up the [NAG Library for Java](URL-PLACEHOLDER).
+> See the top directory of this repository for instructions to set up the [NAG Library for Java](https://github.com/numericalalgorithmsgroup/NAGJavaExamples).
 
 # Loss Function and Robustness in Data-Fitting
 
