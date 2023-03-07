@@ -23,9 +23,9 @@ $$
 \underset{x \in \mathbb{R}^{n_{\text{var}}}}{\text{minimize}} ~f(x) =\sum_{i=1}^{n_{\text{res}}} \chi(r_i(x)),
 $$
 
-where $$x$$ is a vector holding our model parameters, of which there are $$n_\text{var}$$. We have $$n_\text{res}$$ data points, and $$r_i(x)= y_i - \varphi(t_i;x), \quad i = 1,...,n_\text{res}$$ is the $$i^{th}$$ residual, equal to the difference between the observed and predicted values of the independent variable at time $$t_i$$, denoted $$y_i$$ and $$\varphi(t_i;x)$$ respectively. The loss function $\chi$ has desirable properties such as being bounded from below, and increasing with $$\|{r_i\left(x\right)}\|$$. Summing over all data points then, the objective function will be small when the model fits the whole dataset well, which is what we want.
+where $$x$$ is a vector holding our model parameters, of which there are $$n_\text{var}$$. We have $$n_\text{res}$$ data points, and $$r_i(x)= y_i - \varphi(t_i;x), \quad i = 1,...,n_\text{res}$$ is the $$i^{th}$$ residual, equal to the difference between the observed and predicted values of the independent variable at time $$t_i$$, denoted $$y_i$$ and $$\varphi(t_i;x)$$ respectively. The loss function $$\chi$$ has desirable properties such as being bounded from below, and increasing with $$\|{r_i\left(x\right)}\|$$. Summing over all data points then, the objective function will be small when the model fits the whole dataset well, which is what we want.
 
-There are plenty of choices for function $\chi$, so how does our choice of loss function affect the fit we end up with? One important consideration is robustness. If some of the observed data points are far from the fitted model, how can we control the influence of those outliers? A robust loss function is one which doesn’t get thrown off easily by outliers in the data.
+There are plenty of choices for function $$\chi$$, so how does our choice of loss function affect the fit we end up with? One important consideration is robustness. If some of the observed data points are far from the fitted model, how can we control the influence of those outliers? A robust loss function is one which doesn’t get thrown off easily by outliers in the data.
 
 ### Java Imports
 The packages we need to import for this example consist entirely of the following.
@@ -231,7 +231,7 @@ $$
 \underset{x \in \mathbb{R}^{2}}{\text{minimize}}~f(x) =\sum_{i=1}^{21} |r_i(x)|,
 $$
 
-which is more robust against outliers. This means if some large portion of the data is well-fitted by some solution $$x^\ast$$, there is likely to be a local minimum very close to $x^\ast$ which is relatively undisturbed by the remaining data that is outlying to the solution $$x^\ast$$. Here’s the solution, again starting at $$x=(2.1,1.4)$$, using $$l_1$$ loss.
+which is more robust against outliers. This means if some large portion of the data is well-fitted by some solution $$x^\ast$$, there is likely to be a local minimum very close to $$x^\ast$$ which is relatively undisturbed by the remaining data that is outlying to the solution $$x^\ast$$. Here’s the solution, again starting at $$x=(2.1,1.4)$$, using $$l_1$$ loss.
 
 Now all we need to do is change the loss function parameter, reset $$x$$, and solve again.
 ```java
