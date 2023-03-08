@@ -80,7 +80,7 @@ MONIT monit = new MONIT(); // defined below using E04GNU
 CONFUN confun = new CONFUN(); // defined below using E04GNX (dummy)
 CONGRD congrd = new CONGRD(); // defined below using E04GNY (dummy)
         
-double [] x = new double [2]; // instatiate an array for as many variable you need 
+double [] x = new double [2]; // instantiate an array for as many variable you need 
 long handle = 0;
 int nvar = x.length;
 int ifail;
