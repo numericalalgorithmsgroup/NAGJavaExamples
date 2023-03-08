@@ -9,11 +9,11 @@
 
 ### NAG Library Install
 
-To run this example, you will need to install the NAG Library (Mark 28.5 or newer) and a license key. You will also need the NAG Library for Java wrappers. You can find the software, wrappers, and request a license key from our website here: [Getting Started with NAG Library](https://www.nag.com/content/getting-started-nag-library)
+To run this example, you will need to install the NAG Library (Mark 28.5 or newer) and a license key. You will also need the NAG Library for Java wrappers. You can find the software, wrappers, and request a license key from our website here: [Getting Started with NAG Library](https://www.nag.com/content/getting-started-nag-library?lang=jv)
 
 ### Using These Example Files
 
-This directory contains a Java source code and a couple images files to help illustrate this example. With NAG Library and wrappers properly installed, the Java file can be compiled and run as it is to produce a data set and execute all the example scenarios described below.
+This directory contains the [Java source code](./GenDFEx.java) and a couple images files to help illustrate this example. With NAG Library and wrappers properly installed, the Java file can be compiled and run as it is to produce a data set and execute all the example scenarios described below.
 
 
 ## Introduction
@@ -34,11 +34,11 @@ import com.nag.routines.E04.E04GN; // nagf_opt_handle_solve_nldf
 import com.nag.routines.E04.E04GNU; // monit
 import com.nag.routines.E04.E04GNX; // confun dummy
 import com.nag.routines.E04.E04GNY; // congrd dummy
-import com.nag.routines.E04.E04RA; // Handle init
-import com.nag.routines.E04.E04RH; //box bounds
+import com.nag.routines.E04.E04RA; // handle init
+import com.nag.routines.E04.E04RH; // box bounds
 import com.nag.routines.E04.E04RJ; // linear constraints
 import com.nag.routines.E04.E04RM; // add model and residual sparsity structure
-import com.nag.routines.E04.E04RZ; //destroy handle
+import com.nag.routines.E04.E04RZ; // destroy handle
 import com.nag.routines.E04.E04ZM; // optional parameters
 
 import java.lang.Math;
@@ -48,74 +48,74 @@ import java.util.Arrays;
 ### Utility Functions and Setup
 We need to define a few dummy functions required by the Generalized Data Fitting solver interface
 ```java
-private static class CONFUN extends E04GNX implements E04GN.E04GN_CONFUN {
+public static class CONFUN extends E04GN.Abstract_E04GN_CONFUN {
     public void eval(){
-        super.eval();
+        this.eval();
     }
 }
 
-private static class CONGRD extends E04GNY implements E04GN.E04GN_CONGRD {
+public static class CONGRD extends E04GN.Abstract_E04GN_CONGRD {
     public void eval(){
-        super.eval();
+        this.eval();
     }
 }
 
-private static class MONIT extends E04GNU implements E04GN.E04GN_MONIT {
+public static class MONIT extends E04GN.Abstract_E04GN_MONIT {
     public void eval(){
-        super.eval();
+        this.eval();
     }
 }
 ```
 
 Inside our 'main', we will initialize all our variables and create our handle.
 ```java
-        E04GN e04gn = new E04GN(); // the solver
-        E04RA e04ra = new E04RA(); // the handle initializer
-        E04RM e04rm = new E04RM(); // for setting model and residual sparsity structure
-        E04ZM e04zm = new E04ZM(); // for setting optional parameters
-        E04RZ e04rz = new E04RZ(); // handle destroyer
+E04GN e04gn = new E04GN(); // the solver
+E04RA e04ra = new E04RA(); // the handle initializer
+E04RM e04rm = new E04RM(); // for setting model and residual sparsity structure
+E04ZM e04zm = new E04ZM(); // for setting optional parameters
+E04RZ e04rz = new E04RZ(); // handle destroyer
 
 
-        MONIT monit = new MONIT(); // defined below using E04GNU
-        CONFUN confun = new CONFUN(); // defined below using E04GNX (dummy)
-        CONGRD congrd = new CONGRD(); // defined below using E04GNY (dummy)
+MONIT monit = new MONIT(); // defined below using E04GNU
+CONFUN confun = new CONFUN(); // defined below using E04GNX (dummy)
+CONGRD congrd = new CONGRD(); // defined below using E04GNY (dummy)
         
-                double [] x = new double [2]; // instatiate an array for as many variable you need 
-        long handle = 0;
-        int nvar = x.length;
-        int ifail;
-        int nres = t.length;
+double [] x = new double [2]; // instatiate an array for as many variable you need 
+long handle = 0;
+int nvar = x.length;
+int ifail;
+int nres = t.length;
 
-        // Init for sparsity structure
-        int isparse = 0;
-        int nnzrd = 0;
-        int [] irowrd = new int [nnzrd];
-        int [] icolrd = new int [nnzrd];
+// Init for sparsity structure
+int isparse = 0;
+int nnzrd = 0;
+int [] irowrd = new int [nnzrd];
+int [] icolrd = new int [nnzrd];
 
-        // Get handle
-        ifail = 0;
-        e04ra.eval(handle, nvar, ifail);
-        handle = e04ra.getHANDLE();
+// Get handle
+ifail = 0;
+e04ra.eval(handle, nvar, ifail);
+handle = e04ra.getHANDLE();
 
-        // define the residual functions and sparsity structure
-        ifail = 0;
-        e04rm.eval(handle, nres, isparse, nnzrd, irowrd, icolrd, ifail);
+// define the residual functions and sparsity structure
+ifail = 0;
+e04rm.eval(handle, nres, isparse, nnzrd, irowrd, icolrd, ifail);
 
-        // Set options
-        ifail = 0;
-        e04zm.eval(handle, "NLDF Loss Function Type = L2", ifail);
-        e04zm.eval(handle, "Print Level = 1", ifail);
-        e04zm.eval(handle, "Print Options = No", ifail);
-        e04zm.eval(handle, "Print Solution = Yes", ifail);
+// Set options
+ifail = 0;
+e04zm.eval(handle, "NLDF Loss Function Type = L2", ifail);
+e04zm.eval(handle, "Print Level = 1", ifail);
+e04zm.eval(handle, "Print Options = No", ifail);
+e04zm.eval(handle, "Print Solution = Yes", ifail);
 
-        // Initialize all the remaining parameters
-        LSQFUN lsqfun = new LSQFUN();
-        LSQGRD lsqgrd = new LSQGRD();
-        double [] rx = new double[nres];
-        double [] rinfo = new double[100];
-        double [] stats = new double [100];
-        int [] iuser = new int[0];
-        long cpuser = 0;
+// Initialize all the remaining parameters
+LSQFUN lsqfun = new LSQFUN();
+LSQGRD lsqgrd = new LSQGRD();
+double [] rx = new double[nres];
+double [] rinfo = new double[100];
+double [] stats = new double [100];
+int [] iuser = new int[0];
+long cpuser = 0;
 ```
 
 We also define $$t$$ as an array of 21 points from $$0.5$$ to $$2.5$$.
@@ -127,7 +127,7 @@ To investigate the robustness aspect, here’s a toy dataset which is generated 
 ![toy1](images/fig1.png)
 
 ```java
-private static double[] toydata1(double [] t) {
+public static double[] toydata1(double [] t) {
     double [] y = new double[t.length * 2];
     for(int i = 0; i < t.length * 2; i++){
         if(i < t.length){
@@ -154,7 +154,7 @@ using a variety of loss functions provided by NAG’s data-fitting solver **hand
 
 To set up this model, we must define it and its gradient inside the functions `LSQFUN` and `LSQGRD`
 ```java
-private static class LSQFUN extends E04GN.Abstract_E04GN_LSQFUN {
+public static class LSQFUN extends E04GN.Abstract_E04GN_LSQFUN {
     public void eval() {
         for(int i = 0; i < NRES; i++){
              this.RX[i] = RUSER[NRES + i] - X[0] * Math.sin(X[1] * RUSER[i]);
@@ -162,7 +162,7 @@ private static class LSQFUN extends E04GN.Abstract_E04GN_LSQFUN {
     }
 }
 
-private static class LSQGRD extends E04GN.Abstract_E04GN_LSQGRD {
+public static class LSQGRD extends E04GN.Abstract_E04GN_LSQGRD {
     public void eval() {
         for(int i = 0; i < NRES; i++){
             this.RDX[i * NVAR] = (-1 * Math.sin(X[1]*RUSER[i]));
@@ -190,7 +190,7 @@ to see what this outlier does to the minimum.
 For this Java example, we set up a function to reset $$x$$ variable to the starting point, since it gets passed to the solver and returns the solution.
 
 ```java
-private static double[] init_x() {
+public static double[] init_x() {
     double [] x = new double [] {2.1,1.4};
     return x;
 }
@@ -269,7 +269,7 @@ To illustrate this, here’s a new dataset which we will try to fit with the sam
 ![toy2](images/fig4.png)
 
 ```java
-private static double[] toydata2(double [] t) {
+public static double[] toydata2(double [] t) {
     double [] y = new double[t.length * 2];
     for(int i = 0; i < t.length * 2; i++){
         if(i < t.length){
@@ -286,7 +286,7 @@ private static double[] toydata2(double [] t) {
 }
 ```
 
-We will fit this data set using 3 different loss functions with the same model $$\varphi(t;x)$$ each time and discuss the results under the plots all at once below.
+We will fit this data set using 3 different loss functions with the same model $$\varphi(t;x)$$ each time and discuss the results under the plots all at once below. And we'll lastly clear the handle completely.
 
 ```java
 ifail = 0;
@@ -306,6 +306,8 @@ x = init_x();
 e04zm.eval(handle, "NLDF Loss Function Type = ATAN", ifail);
 e04gn.eval(handle, lsqfun, lsqgrd, confun, congrd, monit, nvar, x, nres, rx, rinfo,
     stats, iuser, ruser2, cpuser, ifail);
+    
+e04rz.eval(handle,ifail); // Destroy the handle
 ```
 
 Here are all the curves plotted together:
@@ -327,7 +329,7 @@ $$
 The fitted model and corresponding contour plot for the $$\arctan$$ case are in the middle. Here, there are eight local minima in the contour plot for $$\arctan$$ loss, with seven of them being substantially worse solutions than the global minimum, and it is one of these we’ve converged to. Therefore, in this case the selection of initial estimation of the parameters is much more important.
 
 The model fitted with $$l_1$$-norm loss and the corresponding contour plot are in the right column. Looking at the contour plot, there are still a few local minima that do not correspond to the optimal solution, but the starting point of $$x = (2.1,1.4)$$ still converges to the global minimum, which lies at
-$$x = (5,1)$$, meaning the part of the dataset generated from $$\sin(t)$$ is effectively being ignoring. From the plots of the loss functions, we can see that $$l_1$$-norm loss is more robust than $$l_2$$-norm loss but less so than $$\arctan$$ loss. 
+$$x = (5,1)$$, meaning the part of the dataset generated from $$\sin(t)$$ is effectively being ignored. From the plots of the loss functions, we can see that $$l_1$$-norm loss is more robust than $$l_2$$-norm loss but less so than $$\arctan$$ loss. 
 
 So, what has happened in each case is: using $$l_2$$-norm loss, we move to the global minimum which is affected by the whole dataset. Using $$l_1$$-norm loss, we move to the global minimum which fits most of the data very well and ignores a small portion, treating them as outliers. Using $$\arctan$$ loss we move to a local minimum which ignores a large portion of the data (treating them as outliers) and fits a small amount of data very well.
 
