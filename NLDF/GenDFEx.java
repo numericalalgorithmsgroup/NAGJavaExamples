@@ -3,17 +3,15 @@ import com.nag.routines.E04.E04GNU; // monit
 import com.nag.routines.E04.E04GNX; // confun dummy
 import com.nag.routines.E04.E04GNY; // congrd dummy
 import com.nag.routines.E04.E04RA; // Handle init
-import com.nag.routines.E04.E04RH; //box bounds
+import com.nag.routines.E04.E04RH; // box bounds
 import com.nag.routines.E04.E04RJ; // linear constraints
 import com.nag.routines.E04.E04RM; // add model and residual sparsity structure
-import com.nag.routines.E04.E04RZ; //destroy handle
+import com.nag.routines.E04.E04RZ; // destroy handle
 import com.nag.routines.E04.E04ZM; // optional parameters
 
 import java.lang.Math;
 import java.util.Arrays;
-//import java.io.File;
-//import java.io.IOException;
-///import java.io.FileWriter;
+
 
 public class GenDFEx {
 
@@ -36,7 +34,7 @@ public class GenDFEx {
         double [] ruser1 = toydata1(t); // For Example 1
         double [] ruser2 = toydata2(t); // For Example 2
 
-        double [] x = new double [2]; // instatiate an array for as many variable you need 
+        double [] x = new double [2]; // instantiate an array for as many variable you need 
         long handle = 0;
         int nvar = x.length;
         int ifail;
@@ -55,7 +53,7 @@ public class GenDFEx {
         e04ra.eval(handle, nvar, ifail);
         handle = e04ra.getHANDLE();
 
-        // define the residual functions and sparsity structure
+        // Define the residual functions and sparsity structure
         ifail = 0;
         e04rm.eval(handle, nres, isparse, nnzrd, irowrd, icolrd, ifail);
 
@@ -79,7 +77,7 @@ public class GenDFEx {
         System.out.println("\n----Solving Toy Dataset #1 with L2 Loss Function----");
         ifail = 0;
         x = init_x(); //give x the initial guess you want to start from
-                      // x will be changed during solve
+                      // NOTE: x will be changed during solve
         e04gn.eval(handle, lsqfun, lsqgrd, confun, congrd, monit, nvar, x, nres, rx, rinfo,
             stats, iuser, ruser1, cpuser, ifail);
 
@@ -116,12 +114,12 @@ public class GenDFEx {
         e04gn.eval(handle, lsqfun, lsqgrd, confun, congrd, monit, nvar, x, nres, rx, rinfo,
             stats, iuser, ruser2, cpuser, ifail);
 
-        e04rz.eval(handle,ifail); // destroy the handle
+        e04rz.eval(handle,ifail); // Destroy the handle
         
     }
 
 
-    private static class LSQFUN extends E04GN.Abstract_E04GN_LSQFUN {
+    public static class LSQFUN extends E04GN.Abstract_E04GN_LSQFUN {
         public void eval() {
             for(int i = 0; i < NRES; i++){
                 this.RX[i] = RUSER[NRES + i] - X[0] * Math.sin(X[1] * RUSER[i]);
@@ -129,7 +127,7 @@ public class GenDFEx {
         }
     }
 
-    private static class LSQGRD extends E04GN.Abstract_E04GN_LSQGRD {
+    public static class LSQGRD extends E04GN.Abstract_E04GN_LSQGRD {
         public void eval() {
             for(int i = 0; i < NRES; i++){
                 this.RDX[i * NVAR] = (-1 * Math.sin(X[1]*RUSER[i]));
@@ -139,26 +137,26 @@ public class GenDFEx {
     }
 
     // Dummy Functions required for NLDF solver
-    private static class CONFUN extends E04GNX implements E04GN.E04GN_CONFUN {
+    public static class CONFUN extends E04GN.Abstract_E04GN_CONFUN {
         public void eval(){
-            super.eval();
+            this.eval();
         }
     }
 
-    private static class CONGRD extends E04GNY implements E04GN.E04GN_CONGRD {
+    public static class CONGRD extends E04GN.Abstract_E04GN_CONGRD {
         public void eval(){
-            super.eval();
+            this.eval();
         }
     }
 
-    private static class MONIT extends E04GNU implements E04GN.E04GN_MONIT {
+    public static class MONIT extends E04GN.Abstract_E04GN_MONIT {
         public void eval(){
-            super.eval();
+            this.eval();
         }
     }
     
     // Utilities for setting up data for problem
-    private static double[] linspace(double startPoint, double endPoint, int length) {
+    public static double[] linspace(double startPoint, double endPoint, int length) {
         double[] a = new double[length];
         double step = (endPoint - startPoint) / (length - 1);
         a[0] = startPoint;
@@ -169,7 +167,7 @@ public class GenDFEx {
         return a;
     }
 
-    private static double[] toydata1(double [] t) {
+    public static double[] toydata1(double [] t) {
         double [] y = new double[t.length * 2];
         for(int i = 0; i < t.length * 2; i++){
             if(i < t.length){
@@ -185,7 +183,7 @@ public class GenDFEx {
         return y;
     }
     
-    private static double[] toydata2(double [] t) {
+    public static double[] toydata2(double [] t) {
         double [] y = new double[t.length * 2];
         for(int i = 0; i < t.length * 2; i++){
             if(i < t.length){
@@ -202,7 +200,7 @@ public class GenDFEx {
     }
 
     // For resetting the initial guess
-    private static double[] init_x() {
+    public static double[] init_x() {
         double [] x = new double [] {2.1,1.4};
         return x;
     }
