@@ -12,6 +12,7 @@ This repository contains examples and demonstrations using the [NAG Library for 
 * [Fast Implied Volatilities](./opt_imp_vol)
 * [Nonlinear Least-Squares Trust-Region Method (BXNL)](./BXNL)
 * [First-order active-set method (FOAS)](./FOAS)
+* [Generalized Nonlinear Data Fitting](./NLDF)
 
 ## Examples that ship with the product
 
