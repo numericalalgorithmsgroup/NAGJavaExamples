@@ -1,9 +1,9 @@
 > ## Important Information
 > This repository can viewed as a regular github [repository](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/) or as a [webpage](https://numericalalgorithmsgroup.github.io/NAGJavaExamples/).
 
-# Examples using the NAG Library for Java
+# Examples using the *n*AG Library for Java
 
-This repository contains examples and demonstrations using the [NAG Library for Java](https://www.nag.com/content/nag-library-for-java).  The NAG Library for Java contains 1900+ functions spanning many areas of numerical computing and data science.
+This repository contains examples and demonstrations using the [*n*AG Library for Java](https://www.nag.com/content/nag-library-for-java).  The *n*AG Library for Java contains 1900+ functions spanning many areas of numerical computing and data science.
 
 ## Directory of GitHub examples
 
@@ -16,24 +16,24 @@ This repository contains examples and demonstrations using the [NAG Library for 
 
 ## Examples that ship with the product
 
-The NAG Library for Java ships with a set of usage [examples](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/simple_examples).
+The *n*AG Library for Java ships with a set of usage [examples](https://github.com/numericalalgorithmsgroup/NAGJavaExamples/tree/main/simple_examples).
 
 ## Prerequisites
 
-The NAG Library for Java is NOT compatible with all implementations of the NAG Library. It is therefore important that you ensure that the correct implementation of the NAG Library is installed in order to use these wrappers.
+The *n*AG Library for Java is NOT compatible with all implementations of the *n*AG Library. It is therefore important that you ensure that the correct implementation of the *n*AG Library is installed in order to use these wrappers.
 
-The NAG Library for Java Mark 27.1 is available for the following platforms:
+The *n*AG Library for Java Mark 27.1 is available for the following platforms:
 
-| Platform | NAG Library |
+| Platform | *n*AG Library |
 | --- | --- |
 | Linux 64-bit | NLL6I271BL |
 | Windows 64-bit | NLW6I271EL |
 
-You can get the NAG Library from [here](https://www.nag.com/content/nag-library).
+You can get the *n*AG Library from [here](https://www.nag.com/content/nag-library).
 
 ## Obtaining a license
 
-Before you can use the NAG Library for Java, you'll need a license. Free trial licenses are available!
+Before you can use the *n*AG Library for Java, you'll need a license. Free trial licenses are available!
 
 To request a licence key, you first need to know your Kusari *hostid* and email that along with the *Product Code* to [support@nag.com](mailto:support@nag.com).
 
@@ -62,18 +62,18 @@ or
 
 More detailed installation instructions are availavle in the [Installer's Note](https://www.nag.com/content/nag-library-mark-27).
 
-## NAG Library for Java installation
+## *n*AG Library for Java installation
 
-You can get the NAG Library for Java from [here](https://www.nag.com/content/nag-library-java-download).
+You can get the *n*AG Library for Java from [here](https://www.nag.com/content/nag-library-java-download).
 
 ### Linux
 
-To install the NAG Library for Java, you simply have to unzip the distribution file and copy two files to convenient locations on your system:
+To install the *n*AG Library for Java, you simply have to unzip the distribution file and copy two files to convenient locations on your system:
 
 * NAGJava.jar
 * libnag_jni271.so
 
-The following **must** be in your *LD_LIBRARY_PATH* environment variable to use the NAG Library for Java:
+The following **must** be in your *LD_LIBRARY_PATH* environment variable to use the *n*AG Library for Java:
 
 * The directory containing *libnag_jni271.so*
 * The directories *lp64/lib* and *rtl/lib/intel64* of the underlying library NLL6I271BL
@@ -96,12 +96,12 @@ If you are using an IDE such as Eclipse, you may need to configure your project 
 
 ### Windows
 
-To install the NAG Library for Java, you simply have to unzip the distribution file and copy two files to convenient locations on your system:
+To install the *n*AG Library for Java, you simply have to unzip the distribution file and copy two files to convenient locations on your system:
 
 * NAGJava.jar
 * nag_jni271.dll
 
-The following **must** be in your *PATH* environment variable to use the NAG Library for Java:
+The following **must** be in your *PATH* environment variable to use the *n*AG Library for Java:
 
 * The directory containing *nag_jni271.dll*
 * The directories *bin* and *rtl\bin* of the underlying library NLW6I271EL
